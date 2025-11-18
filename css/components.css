@@ -11,6 +11,10 @@
   transition: all var(--transition-base);
 }
 
+.nav::after {
+  display: none;
+}
+
 .nav.scrolled {
   box-shadow: var(--shadow-md);
   border-bottom-color: var(--border-subtle-hover);
@@ -32,6 +36,45 @@
 
 .logo:hover {
   color: var(--accent);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-sm);
+  z-index: 101;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.nav-toggle:hover .hamburger-line {
+  background: var(--accent);
+}
+
+.hamburger-line {
+  width: 1.5rem;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+.nav-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(0.5rem) rotate(45deg);
+}
+
+.nav-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-0.5rem) rotate(-45deg);
 }
 
 .nav-links {
@@ -807,8 +850,68 @@
 }
 
 @media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
   .nav-links {
-    gap: var(--space-md);
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-2xl) var(--space-xl);
+    gap: var(--space-lg);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+    transition: right var(--transition-slow);
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .nav.nav-open .nav-links {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links .nav-link {
+    display: block;
+    padding: var(--space-sm) 0;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .nav-links .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-md);
+  }
+
+  .nav-links .nav-link::after {
+    display: none;
+  }
+
+  /* Overlay when menu is open */
+  .nav.nav-open::after {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99;
+    pointer-events: auto;
   }
   
   .hero-actions {
