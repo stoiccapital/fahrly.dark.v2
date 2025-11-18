@@ -128,6 +128,162 @@
         }
       });
     });
+
+    // Testimonial Carousel
+    document.addEventListener('DOMContentLoaded', function() {
+      const testimonialSection = document.querySelector('.testimonial-section');
+      if (!testimonialSection) return;
+
+      const track = testimonialSection.querySelector('.testimonial-track');
+      const cards = testimonialSection.querySelectorAll('.testimonial-card');
+      const prevBtn = testimonialSection.querySelector('.testimonial-nav--prev');
+      const nextBtn = testimonialSection.querySelector('.testimonial-nav--next');
+      
+      if (!track || !cards.length || !prevBtn || !nextBtn) return;
+
+      let currentIndex = 0;
+      let isTransitioning = false;
+      let autoplayInterval = null;
+      const autoplayDelay = 6500; // 6.5 seconds
+      
+      function getCardsPerView() {
+        return window.innerWidth <= 768 ? 1 : 2;
+      }
+      
+      function getTotalSlides() {
+        return Math.ceil(cards.length / getCardsPerView());
+      }
+
+      function updateCarouselPosition() {
+        const cardsPerView = getCardsPerView();
+        
+        // Wait for cards to have width
+        if (!cards[0] || cards[0].offsetWidth === 0) {
+          setTimeout(updateCarouselPosition, 50);
+          return;
+        }
+        
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(track).gap) || 24;
+        const slideWidth = (cardWidth + gap) * cardsPerView;
+        const translateX = -(currentIndex * slideWidth);
+        
+        track.style.transform = `translateX(${translateX}px)`;
+        updateNavButtons();
+      }
+
+      function updateNavButtons() {
+        const totalSlides = getTotalSlides();
+        // Use opacity instead of disabled to allow looping
+        prevBtn.style.opacity = '1';
+        nextBtn.style.opacity = '1';
+        prevBtn.removeAttribute('disabled');
+        nextBtn.removeAttribute('disabled');
+      }
+
+      function goToSlide(index) {
+        if (isTransitioning) return;
+        
+        const totalSlides = getTotalSlides();
+        currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+        isTransitioning = true;
+        
+        updateCarouselPosition();
+        
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 600);
+      }
+
+      function nextSlide() {
+        const totalSlides = getTotalSlides();
+        if (currentIndex < totalSlides - 1) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(0); // Loop back to start
+        }
+      }
+
+      function prevSlide() {
+        const totalSlides = getTotalSlides();
+        if (currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        } else {
+          goToSlide(totalSlides - 1); // Loop to end
+        }
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayInterval = setInterval(() => {
+          nextSlide();
+        }, autoplayDelay);
+      }
+
+      function stopAutoplay() {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+      }
+
+      // Button event listeners
+      nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        nextSlide();
+        stopAutoplay();
+        startAutoplay();
+      });
+
+      prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        prevSlide();
+        stopAutoplay();
+        startAutoplay();
+      });
+
+      // Keyboard navigation
+      testimonialSection.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevSlide();
+          stopAutoplay();
+          startAutoplay();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextSlide();
+          stopAutoplay();
+          startAutoplay();
+        }
+      });
+
+      // Pause autoplay on hover
+      testimonialSection.addEventListener('mouseenter', stopAutoplay);
+      testimonialSection.addEventListener('mouseleave', startAutoplay);
+
+      // Handle window resize
+      let resizeTimeout;
+      let lastCardsPerView = getCardsPerView();
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          const newCardsPerView = getCardsPerView();
+          if (newCardsPerView !== lastCardsPerView) {
+            lastCardsPerView = newCardsPerView;
+            currentIndex = 0;
+            updateCarouselPosition();
+          }
+        }, 250);
+      });
+
+      // Initialize after a short delay to ensure layout is ready
+      setTimeout(() => {
+        updateCarouselPosition();
+        startAutoplay();
+      }, 100);
+    });
   </script>
   <!-- Navigation will be loaded here -->
   <div id="navbar-container"></div>
@@ -374,44 +530,74 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" class="section section-alt">
+  <section id="testimonials" class="testimonial-section section section-alt" tabindex="0">
     <div class="container">
-      <div class="grid-3">
-        <div class="feature-card">
-          <p>„Durch die Automatisierung unserer Fahrtenvermittlung sparen wir täglich etwa 3 Stunden Arbeitszeit. Das sind rund 150 € pro Tag."</p>
-          <div class="testimonial-author">
-            <strong>Michael Schmidt</strong>
-            <span>Geschäftsführer, Taxi Schmidt GmbH</span>
+      <div class="testimonial-intro">
+        <h2>Was unsere Kunden über Fahrly sagen</h2>
+        <p>Echte Ergebnisse aus dem Alltag von Mietwagen- und Taxiunternehmen</p>
+      </div>
+      
+      <div class="testimonial-carousel-wrapper">
+        <button class="testimonial-nav testimonial-nav--prev" aria-label="Vorheriges Testimonial">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <div class="testimonial-carousel">
+          <div class="testimonial-track">
+            <div class="testimonial-card">
+              <div class="testimonial-card__accent"></div>
+              <p class="testimonial-card__quote">„Durch die Automatisierung unserer Fahrtenvermittlung sparen wir täglich rund 3 Stunden Arbeitszeit. Das entspricht etwa 150 € pro Tag – und einer deutlich entspannteren Disposition."</p>
+              <div class="testimonial-card__author">
+                <strong class="testimonial-card__name">Shadea Kald</strong>
+                <span class="testimonial-card__company">MK25 GmbH</span>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__accent"></div>
+              <p class="testimonial-card__quote">„Die digitale Belegverwaltung hat unsere Buchhaltungskosten um ca. 40 % reduziert. Wir arbeiten komplett papierlos – effizienter geht es kaum."</p>
+              <div class="testimonial-card__author">
+                <strong class="testimonial-card__name">Ali Mousa</strong>
+                <span class="testimonial-card__company">MyCar GmbH</span>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__accent"></div>
+              <p class="testimonial-card__quote">„Mit dem automatischen Gehaltsrechner sparen wir jede Woche etwa 2 Stunden bei der Lohnabrechnung. Aufs Jahr gerechnet liegt die Ersparnis bei über 2.000 €."</p>
+              <div class="testimonial-card__author">
+                <strong class="testimonial-card__name">Alper Coskun</strong>
+                <span class="testimonial-card__company">AC Empire GmbH</span>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__accent"></div>
+              <p class="testimonial-card__quote">„Die E-Signatur-Funktion hat unsere Vertragsabwicklung um etwa 70 % beschleunigt. Keine Postwege, keine Verzögerungen – alles läuft digital und sofort."</p>
+              <div class="testimonial-card__author">
+                <strong class="testimonial-card__name">Muhammed Al Masri</strong>
+                <span class="testimonial-card__company">Muhammed Al Masri GmbH</span>
+              </div>
+            </div>
+            
+            <div class="testimonial-card">
+              <div class="testimonial-card__accent"></div>
+              <p class="testimonial-card__quote">„Dank der automatischen Wartungserinnerungen haben wir rund 30 % weniger ungeplante Reparaturen. Das spart uns im Schnitt über 500 € pro Monat."</p>
+              <div class="testimonial-card__author">
+                <strong class="testimonial-card__name">Atash</strong>
+                <span class="testimonial-card__company">Atash GmbH</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="feature-card">
-          <p>„Die digitale Belegverwaltung hat unsere Buchhaltungskosten um etwa 40 % reduziert. Keine Papierberge mehr."</p>
-          <div class="testimonial-author">
-            <strong>Sarah Weber</strong>
-            <span>Inhaberin, Weber Mietwagen</span>
-          </div>
-        </div>
-        <div class="feature-card">
-          <p>„Mit dem automatischen Gehaltsrechner sparen wir jede Woche rund 2 Stunden bei der Lohnabrechnung – das sind etwa 200 € pro Monat."</p>
-          <div class="testimonial-author">
-            <strong>Ahmed Al-Masri</strong>
-            <span>Geschäftsführer, Al-Masri Transport</span>
-          </div>
-        </div>
-        <div class="feature-card">
-          <p>„Die E-Signatur Funktion hat unsere Vertragsabwicklung um ungefähr 70 % beschleunigt. Keine Postwege, keine Wartezeiten."</p>
-          <div class="testimonial-author">
-            <strong>Julia Müller</strong>
-            <span>Leiterin, City Taxi Service</span>
-          </div>
-        </div>
-        <div class="feature-card">
-          <p>„Dank der Wartungserinnerungen haben wir etwa 30 % weniger ungeplante Reparaturen. Das spart uns im Schnitt 500 € pro Monat."</p>
-          <div class="testimonial-author">
-            <strong>Thomas Klein</strong>
-            <span>Fleet Manager, Premium Cars GmbH</span>
-          </div>
-        </div>
+        
+        <button class="testimonial-nav testimonial-nav--next" aria-label="Nächstes Testimonial">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
