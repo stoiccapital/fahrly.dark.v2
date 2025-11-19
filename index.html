@@ -45,89 +45,28 @@
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add('is-visible');
+            // Only observe once to prevent re-triggering
+            observer.unobserve(entry.target);
           }
         });
       }, observerOptions);
 
-      // Observe all sections and cards
-      const elementsToAnimate = document.querySelectorAll('.section, .feature-card, .pricing-card');
-      elementsToAnimate.forEach(el => {
+      // Observe only major containers, not individual cards
+      const containersToAnimate = document.querySelectorAll(
+        '#hero .hero-visual, ' +
+        '#features .feature-stack, ' +
+        '#pricing .pricing-grid, ' +
+        '#testimonials .testimonials-grid, ' +
+        '#security .security-grid, ' +
+        '#faq .faq-list'
+      );
+      containersToAnimate.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
       });
     });
 
-    // Trusted By Carousel Arrow Controls
-    document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('trustedByCarousel');
-      const track = carousel?.querySelector('.trusted-by-track');
-      const leftArrow = document.querySelector('.trusted-by-arrow-left');
-      const rightArrow = document.querySelector('.trusted-by-arrow-right');
-      
-      if (!carousel || !track || !leftArrow || !rightArrow) return;
-
-      let manualOffset = 0;
-      let isManualScrolling = false;
-      const scrollAmount = 250;
-      const trackWidth = track.scrollWidth / 2;
-
-      // Get current transform value from animation
-      function getCurrentTransform() {
-        const transform = getComputedStyle(track).transform;
-        if (transform && transform !== 'none') {
-          const matrix = new DOMMatrix(transform);
-          return Math.abs(matrix.m41);
-        }
-        return 0;
-      }
-
-      // Left arrow click
-      leftArrow.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (!isManualScrolling) {
-          isManualScrolling = true;
-          track.style.animationPlayState = 'paused';
-          manualOffset = getCurrentTransform();
-        }
-        
-        manualOffset = Math.max(0, manualOffset - scrollAmount);
-        track.style.transform = `translateX(${-manualOffset}px)`;
-        track.style.transition = 'transform 0.3s ease';
-      });
-
-      // Right arrow click
-      rightArrow.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (!isManualScrolling) {
-          isManualScrolling = true;
-          track.style.animationPlayState = 'paused';
-          manualOffset = getCurrentTransform();
-        }
-        
-        manualOffset = Math.min(trackWidth, manualOffset + scrollAmount);
-        track.style.transform = `translateX(${-manualOffset}px)`;
-        track.style.transition = 'transform 0.3s ease';
-      });
-
-      // Reset to auto-scroll when mouse leaves (if not manually scrolling)
-      carousel.addEventListener('mouseleave', function() {
-        if (isManualScrolling) {
-          // Keep manual scroll position but allow CSS animation to take over after a delay
-          setTimeout(function() {
-            track.style.transition = '';
-            track.style.transform = '';
-            track.style.animationPlayState = 'running';
-            isManualScrolling = false;
-            manualOffset = 0;
-          }, 500);
-        }
-      });
-    });
 
     // Testimonial Carousel
     document.addEventListener('DOMContentLoaded', function() {
@@ -168,6 +107,7 @@
         const slideWidth = (cardWidth + gap) * cardsPerView;
         const translateX = -(currentIndex * slideWidth);
         
+        track.style.transition = 'transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1)';
         track.style.transform = `translateX(${translateX}px)`;
         updateNavButtons();
       }
@@ -285,99 +225,71 @@
       }, 100);
     });
   </script>
-  <!-- Navigation will be loaded here -->
-  <div id="navbar-container"></div>
+
+  <!-- START: navbar (source: components/navbar.html) -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/index.html#hero" class="site-header__logo">Fahrly</a>
+
+      <nav class="site-nav">
+        <a href="/index.html#features" class="site-nav__link">Funktionen</a>
+        <a href="/index.html#pricing" class="site-nav__link">Preise</a>
+        <a href="/index.html#testimonials" class="site-nav__link">Kunden</a>
+        <a href="/index.html#security" class="site-nav__link">Sicherheit</a>
+        <a href="/index.html#faq" class="site-nav__link">FAQ</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="https://qpp.fahrlygo.de/account/login" class="site-header__secondary">Login</a>
+        <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-primary">Jetzt testen</a>
+      </div>
+    </div>
+  </header>
+  <!-- END: navbar -->
 
   <script>
-    // Load navbar component
-    fetch('components/navbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-        // Adjust navbar links for root directory
-        const logo = document.querySelector('.logo');
-        const navLinks = document.querySelectorAll('.nav-link');
-        if (logo) logo.setAttribute('href', '#hero');
-        navLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && href.includes('index.html#')) {
-            link.setAttribute('href', href.replace('index.html#', '#'));
-          }
-        });
-        // Initialize navbar functionality after loading
-        initNavbar();
-      })
-      .catch(error => console.error('Error loading navbar:', error));
-
-    function initNavbar() {
-      // Sticky nav scroll effect
+    // Sticky header scroll effect
+    document.addEventListener('DOMContentLoaded', function() {
       window.addEventListener('scroll', function() {
-        const nav = document.querySelector('.nav');
-        if (nav && window.scrollY > 50) {
-          nav.classList.add('scrolled');
-        } else if (nav) {
-          nav.classList.remove('scrolled');
+        const header = document.querySelector('.site-header');
+        if (header && window.scrollY > 50) {
+          header.classList.add('site-header--scrolled');
+        } else if (header) {
+          header.classList.remove('site-header--scrolled');
         }
       });
-
-      // Mobile navigation toggle
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      const nav = document.querySelector('.nav');
-      
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-          navToggle.setAttribute('aria-expanded', !isExpanded);
-          nav.classList.toggle('nav-open');
-          navToggle.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link or logo
-        const logo = document.querySelector('.logo');
-        if (logo) {
-          logo.addEventListener('click', function() {
-            nav.classList.remove('nav-open');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-          });
-        }
-        
-        navLinks.querySelectorAll('.nav-link, .btn').forEach(link => {
-          link.addEventListener('click', function() {
-            nav.classList.remove('nav-open');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-          });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-          if (!nav.contains(event.target) && nav.classList.contains('nav-open')) {
-            nav.classList.remove('nav-open');
-            navToggle.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-    }
+    });
   </script>
 
   <!-- Hero Section -->
-  <section id="hero" class="hero section">
+  <section id="hero" class="hero section section-bg--hero">
     <div class="container">
       <div class="grid-2">
         <div class="hero-content">
           <div class="hero-eyebrow">Für Mietwagenunternehmen in Deutschland</div>
-          <h1>Mehr Kontrolle. Weniger Chaos. Weniger Kosten.</h1>
-          <p class="text-max-width">Behalte Fahrzeuge, Fahrer, Dokumente und Ausgaben an einem Ort – automatisch, übersichtlich und ohne WhatsApp-Chaos.</p>
+          <h1 class="signature-stripe">Mehr Kontrolle. Weniger Chaos. Weniger Kosten.</h1>
+          <p class="text-max-width">Fahrzeuge, Fahrer, Dokumente und Ausgaben an einem Ort – weniger manuelle Arbeit, weniger WhatsApp-Chaos, weniger Excel.</p>
           <div class="hero-actions">
             <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-primary">Kostenlos testen</a>
           </div>
-          <p class="hero-micro-copy">2 Tage kostenlos testen – keine Kreditkarte nötig</p>
+          <p class="hero-micro-copy">In 5 Minuten startklar – 2 Tage kostenlos testen, keine Kreditkarte nötig.</p>
         </div>
         <div class="hero-visual">
-          <img src="assets/hero.png" alt="Fahrly Dashboard" class="hero-image">
+          <div class="hero-visual__main-card">
+            <img src="assets/hero.png" alt="Fahrly Dashboard" class="hero-image">
+          </div>
+          <div class="hero-visual__floating hero-visual__floating--top">
+            <div>
+              <div class="hero-visual__floating-title">Fahrer online</div>
+              <div class="hero-visual__floating-value">18 von 24</div>
+            </div>
+          </div>
+          <div class="hero-visual__floating hero-visual__floating--bottom">
+            <div>
+              <div class="hero-visual__floating-title">Belege erfasst</div>
+              <div class="hero-visual__floating-value">124 / Monat</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -388,11 +300,6 @@
     <div class="container">
       <div class="trusted-by-label">Vertrauen bereits auf uns</div>
       <div class="trusted-by-wrapper">
-        <button class="trusted-by-arrow trusted-by-arrow-left" aria-label="Previous brands">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
         <div class="trusted-by-carousel" id="trustedByCarousel">
           <div class="trusted-by-track">
             <div class="trusted-by-badge">AC Empire GmbH</div>
@@ -414,12 +321,8 @@
             <div class="trusted-by-badge">MyCar GmbH</div>
           </div>
         </div>
-        <button class="trusted-by-arrow trusted-by-arrow-right" aria-label="Next brands">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
+      <p class="trusted-note">Fahrly wird bereits von 500+ Mietwagenflotten in ganz Deutschland eingesetzt.</p>
     </div>
   </section>
 
@@ -450,196 +353,353 @@
   <section id="features" class="section section-alt">
     <div class="container">
       <div class="features-intro">
-        <div class="eyebrow">Features</div>
-        <h2>Alles, was Sie brauchen</h2>
+        <div class="eyebrow">Funktionen für Mietwagenflotten</div>
+        <h2 class="signature-stripe--vertical">Alles, was Ihre Zentrale wirklich braucht</h2>
+        <p class="features-intro__text">
+          Fahrly bündelt Fahrten, Fahrzeuge, Belege, Verträge und Fahrer an einem Ort – damit Ihre Zentrale jeden Tag ruhiger, schneller und klarer arbeiten kann.
+        </p>
       </div>
-      <div class="grid-3">
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Smart Notifications</h3>
-          <p>Fahrer sehen Preis, Route und alle wichtigen Infos direkt in der Push-Nachricht – weniger Rückfragen, weniger Missverständnisse.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Fahrzeug-Reports</h3>
-          <p>Kilometerstände, Schäden und Fotos werden sauber dokumentiert. Nie wieder unklare Schäden oder verlorene Zettel.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Beleg-Scanner</h3>
-          <p>Foto machen – fertig. Belege werden automatisch digitalisiert und für die Buchhaltung vorbereitet.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>E-Signatur</h3>
-          <p>Verträge digital verschicken und mit E-Signatur unterschreiben lassen – keine Ausdrucke, keine Post, keine Verzögerung.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Gehaltsrechner</h3>
-          <p>Fahrten per Drag & Drop zuweisen. Umsatz, Provision und Auszahlung werden automatisch berechnet – ganz ohne Excel-Fehler.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Wartungs-Erinnerungen</h3>
-          <p>Automatische Erinnerungen basierend auf echten Kilometerständen – weniger ungeplante Reparaturen und niedrigere Kosten.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"></div>
-          <h3>Community Power</h3>
-          <p>Sehen Sie Fahrerbewertungen aus anderen Fahrly-Unternehmen und erkennen Sie schwarze Schafe frühzeitig.</p>
-        </div>
+
+      <div class="feature-stack">
+        <!-- Feature 1 -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Fahrten zentral vergeben – ohne WhatsApp-Chaos</h3>
+            <p class="feature-row__subtitle">
+              Planen und verteilen Sie alle Fahrten in einem Dashboard – klar, nachvollziehbar und in Echtzeit.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Weniger Abstimmung, weniger Fehler, mehr Ruhe in der Zentrale.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/fahrten-dashboard.png"
+                alt="Zentrale Fahrtenplanung im Fahrly-Dashboard"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="feature-row feature-row--reverse">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Fahrzeug-Reports automatisch dokumentiert</h3>
+            <p class="feature-row__subtitle">
+              Kilometerstände, Schäden und Fotos werden direkt am Fahrzeug sauber erfasst – ohne Zettelwirtschaft.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Keine unklaren Schäden und keine verlorenen Zettel mehr.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/fahrzeug-report.png"
+                alt="Fahrzeug-Report mit Kilometerständen und Schäden"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Digitale Belege in Sekunden</h3>
+            <p class="feature-row__subtitle">
+              Fahrer machen ein Foto, Fahrly bereitet den Beleg automatisch für die Buchhaltung vor.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Stunden weniger Belegsortieren und weniger Fehler in der Abrechnung.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/digitale-belege.png"
+                alt="Digitale Belegerfassung in Fahrly"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 4 -->
+        <article class="feature-row feature-row--reverse">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Verträge mit E-Signatur</h3>
+            <p class="feature-row__subtitle">
+              Verträge digital versenden, unterschreiben lassen und ablegen – komplett ohne Papierkram.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Verträge in Minuten statt Tagen und geringere Kosten für Druck &amp; Versand.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/e-signatur.png"
+                alt="Digitale Vertragsunterzeichnung mit E-Signatur"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 5 -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Automatischer Gehaltsrechner</h3>
+            <p class="feature-row__subtitle">
+              Fahrten per Drag &amp; Drop zuweisen, Fahrly berechnet Umsatz, Provision und Auszahlung automatisch.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Lohnabrechnung ohne Excel-Fehler und ohne Nachrechnen.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/gehaltsrechner.png"
+                alt="Automatischer Gehaltsrechner für Fahrer"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 6 -->
+        <article class="feature-row feature-row--reverse">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Wartungserinnerungen auf Basis echter Kilometer</h3>
+            <p class="feature-row__subtitle">
+              Fahrly erinnert automatisch, wenn Fahrzeuge zur Inspektion müssen – basierend auf realen Kilometerständen.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Weniger Ausfälle, weniger ungeplante Reparaturen, niedrigere Gesamtkosten.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/wartungserinnerung.png"
+                alt="Wartungserinnerungen für Fahrzeuge"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 7 -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Community-Bewertungen für Fahrer</h3>
+            <p class="feature-row__subtitle">
+              Sehen Sie Fahrerbewertungen aus anderen Fahrly-Flotten direkt in Ihrem System.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Risiken früh erkennen und zuverlässige Fahrer schneller finden.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <img
+                src="assets/features/community-bewertungen.png"
+                alt="Community-Bewertungen für Fahrer"
+                class="feature-media-card__image"
+              />
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing" class="section">
+  <section id="pricing" class="pricing section section-bg--muted">
     <div class="container">
-      <div class="pricing-intro">
-        <div class="eyebrow">Preise</div>
-        <h2>Wählen Sie das passende Abo für Ihr Unternehmen</h2>
-        <p>Einfach, transparent und auf Mietwagenunternehmen ausgelegt.</p>
-      </div>
-      <div class="grid-3">
-        <div class="pricing-card starter">
-          <h3 class="pricing-title">Standard</h3>
-          <div class="pricing-price">€ 30<span class="pricing-period">/Monat</span></div>
-          <p class="pricing-description">Perfekt für Einzelunternehmer, die ihre Abläufe endlich digital und übersichtlich organisieren wollen.</p>
-          <ul class="pricing-features">
-            <li>Weniger manuelle Arbeit</li>
-            <li>Alles an einem Ort</li>
-            <li>Klare Zahlen</li>
-          </ul>
-          <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-outline pricing-cta">Kostenlos testen</a>
+      <div class="pricing__inner">
+        <div class="pricing-intro">
+          <div class="eyebrow">Preise</div>
+          <h2 class="signature-stripe--vertical">Wählen Sie das passende Abo für Ihr Unternehmen</h2>
+          <p>Einfach, transparent und auf Mietwagenunternehmen ausgelegt.</p>
         </div>
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Beliebt</div>
-          <h3 class="pricing-title">Team</h3>
-          <div class="pricing-price">€ 50<span class="pricing-period">/Monat</span></div>
-          <p class="pricing-description">Für Unternehmen mit mehreren Fahrern, die mehr Kontrolle, weniger Chaos und klare Auswertungen brauchen.</p>
-          <ul class="pricing-features">
-            <li>Weniger manuelle Arbeit</li>
-            <li>Alles an einem Ort</li>
-            <li>Klare Zahlen</li>
-          </ul>
-          <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-primary pricing-cta">Kostenlos testen</a>
+        <div class="pricing-grid">
+          <div class="pricing-card pricing-card--standard">
+            <p class="pricing-card__label">Standard</p>
+            <h3 class="pricing-card__title">Für kleinere Mietwagenflotten</h3>
+            <div class="pricing-card__price-row">
+              <span class="pricing-card__price">29 €</span>
+              <span class="pricing-card__unit">pro Fahrzeug / Monat</span>
+            </div>
+            <p class="pricing-card__hint">Für 1 Fahrer, monatlich kündbar.</p>
+            <ul class="pricing-card__features">
+              <li>Alle Kernfunktionen für Fahrten & Fahrer</li>
+              <li>Digitale Belege & einfache Auswertung</li>
+              <li>E-Mail-Support innerhalb von 24h</li>
+            </ul>
+            <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-outline pricing-card__cta">Standard testen</a>
+            <p class="pricing-card__value-note">Spart im Schnitt 5+ Stunden Papierarbeit pro Monat.</p>
+          </div>
+          <div class="pricing-card pricing-card--team pricing-card--featured">
+            <span class="pricing-card__badge">Meist gewählt</span>
+            <p class="pricing-card__label">Team</p>
+            <h3 class="pricing-card__title">Für wachsende Flotten</h3>
+            <div class="pricing-card__price-row">
+              <span class="pricing-card__price">49 €</span>
+              <span class="pricing-card__unit">pro Fahrzeug / Monat</span>
+            </div>
+            <p class="pricing-card__hint">Ab 2 Fahrer, mehrere Disponenten möglich.</p>
+            <ul class="pricing-card__features">
+              <li>Erweiterte Reports & Wartungserinnerungen</li>
+              <li>Fahrer-Performance-Analysen</li>
+              <li>Vorrangiger Support & Onboarding-Hilfe</li>
+            </ul>
+            <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-primary pricing-card__cta">Team testen</a>
+            <p class="pricing-card__value-note">Spart im Schnitt 10+ Stunden Verwaltungsaufwand pro Monat.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" class="testimonial-section section section-alt" tabindex="0">
+  <section id="testimonials" class="testimonials section section-alt section-bg--muted">
     <div class="container">
-      <div class="testimonial-intro">
-        <h2>Was unsere Kunden über Fahrly sagen</h2>
-        <p>Echte Ergebnisse aus dem Alltag von Mietwagen- und Taxiunternehmen</p>
-      </div>
-      
-      <div class="testimonial-google-rating">
-        <a href="https://share.google/UcqhCmlb2RntZvowk" target="_blank" rel="noopener noreferrer" class="testimonial-google-link">
-          <svg class="testimonial-google-logo" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          <span class="testimonial-google-stars">★★★★★</span>
-          <span class="testimonial-google-rating-text">5.0/5 basierend auf Google-Bewertungen</span>
-        </a>
-      </div>
-      
-      <div class="testimonial-carousel-wrapper">
-        <button class="testimonial-nav testimonial-nav--prev" aria-label="Vorheriges Testimonial">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        
-        <div class="testimonial-carousel">
-          <div class="testimonial-track">
-            <div class="testimonial-card">
-              <div class="testimonial-card__accent"></div>
-              <p class="testimonial-card__quote">„Durch die Automatisierung unserer Fahrtenvermittlung sparen wir täglich rund 3 Stunden Arbeitszeit. Das entspricht etwa 150 € pro Tag – und einer deutlich entspannteren Disposition."</p>
-              <div class="testimonial-card__author">
-                <strong class="testimonial-card__name">Shadea Kald</strong>
-                <span class="testimonial-card__company">MK25 GmbH</span>
-              </div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-card__accent"></div>
-              <p class="testimonial-card__quote">„Die digitale Belegverwaltung hat unsere Buchhaltungskosten um ca. 40 % reduziert. Wir arbeiten komplett papierlos – effizienter geht es kaum."</p>
-              <div class="testimonial-card__author">
-                <strong class="testimonial-card__name">Ali Mousa</strong>
-                <span class="testimonial-card__company">MyCar GmbH</span>
-              </div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-card__accent"></div>
-              <p class="testimonial-card__quote">„Mit dem automatischen Gehaltsrechner sparen wir jede Woche etwa 2 Stunden bei der Lohnabrechnung. Aufs Jahr gerechnet liegt die Ersparnis bei über 2.000 €."</p>
-              <div class="testimonial-card__author">
-                <strong class="testimonial-card__name">Alper Coskun</strong>
-                <span class="testimonial-card__company">AC Empire GmbH</span>
-              </div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-card__accent"></div>
-              <p class="testimonial-card__quote">„Die E-Signatur-Funktion hat unsere Vertragsabwicklung um etwa 70 % beschleunigt. Keine Postwege, keine Verzögerungen – alles läuft digital und sofort."</p>
-              <div class="testimonial-card__author">
-                <strong class="testimonial-card__name">Muhammed Al Masri</strong>
-                <span class="testimonial-card__company">Muhammed Al Masri GmbH</span>
-              </div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-card__accent"></div>
-              <p class="testimonial-card__quote">„Dank der automatischen Wartungserinnerungen haben wir rund 30 % weniger ungeplante Reparaturen. Das spart uns im Schnitt über 500 € pro Monat."</p>
-              <div class="testimonial-card__author">
-                <strong class="testimonial-card__name">Atash</strong>
-                <span class="testimonial-card__company">Atash GmbH</span>
-              </div>
-            </div>
-          </div>
+      <div class="testimonials__inner">
+        <div class="testimonial-intro">
+          <div class="eyebrow">Kundenstimmen</div>
+          <h2 class="signature-stripe--vertical">Warum Mietwagenflotten mit Fahrly arbeiten</h2>
         </div>
         
-        <button class="testimonial-nav testimonial-nav--next" aria-label="Nächstes Testimonial">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <div class="testimonial-google-rating">
+          <a href="https://share.google/UcqhCmlb2RntZvowk" target="_blank" rel="noopener noreferrer" class="testimonial-google-link">
+            <svg class="testimonial-google-logo" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="testimonial-google-stars">★★★★★</span>
+            <span class="testimonial-google-rating-text">5.0/5 basierend auf Google-Bewertungen</span>
+          </a>
+        </div>
+        
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-card__accent"></div>
+            <div class="testimonial-card__body">
+              <p class="testimonial-card__quote">
+                „Mit Fahrly haben wir unsere Disposition endlich aus WhatsApp und Excel herausgeholt."
+                <span class="testimonial-card__metric">Wir sparen täglich rund 3 Stunden Arbeitszeit – das entspricht etwa 150 € pro Tag.</span>
+              </p>
+            </div>
+            <div class="testimonial-card__footer">
+              <div class="testimonial-card__avatar">
+                <span class="testimonial-avatar-initials">SK</span>
+              </div>
+              <div>
+                <p class="testimonial-card__name">Shadea Kald</p>
+                <p class="testimonial-card__role">Geschäftsführer, MK25 GmbH</p>
+              </div>
+            </div>
+          </article>
+          
+          <article class="testimonial-card">
+            <div class="testimonial-card__accent"></div>
+            <div class="testimonial-card__body">
+              <p class="testimonial-card__quote">
+                „Der automatische Gehaltsrechner hat unsere Lohnabrechnung revolutioniert."
+                <span class="testimonial-card__metric">Wir sparen jede Woche 2 Stunden – aufs Jahr gerechnet über 2.000 €.</span>
+              </p>
+            </div>
+            <div class="testimonial-card__footer">
+              <div class="testimonial-card__avatar">
+                <span class="testimonial-avatar-initials">AC</span>
+              </div>
+              <div>
+                <p class="testimonial-card__name">Alper Coskun</p>
+                <p class="testimonial-card__role">Geschäftsführer, AC Empire GmbH</p>
+              </div>
+            </div>
+          </article>
+          
+          <article class="testimonial-card">
+            <div class="testimonial-card__accent"></div>
+            <div class="testimonial-card__body">
+              <p class="testimonial-card__quote">
+                „Die automatischen Wartungserinnerungen haben unsere Reparaturkosten drastisch gesenkt."
+                <span class="testimonial-card__metric">Wir haben 30 % weniger ungeplante Reparaturen und sparen über 500 € pro Monat.</span>
+              </p>
+            </div>
+            <div class="testimonial-card__footer">
+              <div class="testimonial-card__avatar">
+                <span class="testimonial-avatar-initials">AT</span>
+              </div>
+              <div>
+                <p class="testimonial-card__name">Atash</p>
+                <p class="testimonial-card__role">Geschäftsführer, Atash GmbH</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Security Section -->
-  <section id="security" class="section">
+  <section id="security" class="security section">
     <div class="container">
-      <div class="features-intro">
-        <h2>Sicherheit & Compliance</h2>
-        <p>Ihre Daten bleiben in Europa und sind jederzeit bestmöglich geschützt.</p>
-      </div>
-      <div class="grid-3">
-        <div class="feature-card">
-          <h3>DSGVO-konform</h3>
+      <div class="security__inner">
+        <div class="security-intro">
+          <div class="eyebrow">Sicherheit & Datenschutz</div>
+          <h2 class="signature-stripe--vertical">DSGVO-konform für Mietwagenflotten</h2>
         </div>
-        <div class="feature-card">
-          <h3>SSL-verschlüsselt</h3>
-        </div>
-        <div class="feature-card">
-          <h3>EU-Server</h3>
-        </div>
-        <div class="feature-card">
-          <h3>100 % sicher</h3>
-        </div>
-        <div class="feature-card">
-          <h3>99,9 % verfügbar</h3>
-        </div>
-        <div class="feature-card">
-          <h3>24/7 Support</h3>
+        <div class="security-grid">
+          <article class="security-card">
+            <div class="security-card__icon">
+              <svg class="security-icon security-icon--shield" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 2L3 4.5V8.5C3 11.5 4.5 14.5 9 16C13.5 14.5 15 11.5 15 8.5V4.5L9 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <circle cx="9" cy="6" r="1" fill="currentColor"/>
+                <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                <circle cx="9" cy="12" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="security-card__title">DSGVO & EU-Server</h3>
+            <p class="security-card__text">Alle Daten werden ausschließlich auf EU-Servern verarbeitet – vollständig DSGVO-konform für Mietwagenflotten.</p>
+          </article>
+          <article class="security-card">
+            <div class="security-card__icon">
+              <svg class="security-icon security-icon--lock" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M5 8V5C5 3.5 6 2.5 7.5 2.5H10.5C12 2.5 13 3.5 13 5V8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <circle cx="9" cy="11.5" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="security-card__title">Verschlüsselung & Verfügbarkeit</h3>
+            <p class="security-card__text">Übertragung per SSL/TLS verschlüsselt, hohe Verfügbarkeit – Ihre Dispo läuft, wenn Ihre Fahrer fahren.</p>
+          </article>
+          <article class="security-card">
+            <div class="security-card__icon">
+              <svg class="security-icon security-icon--headset" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 8C6 6.5 7 5.5 8.5 5.5H9.5C11 5.5 12 6.5 12 8V11C12 12.5 11 13.5 9.5 13.5H8.5C7 13.5 6 12.5 6 11V8Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M4 11C4 11 3 11 3 9.5C3 8 4 7 5.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M14 11C14 11 15 11 15 9.5C15 8 14 7 12.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="security-card__title">Support & Onboarding</h3>
+            <p class="security-card__text">Persönlicher Support und Onboarding helfen Ihrer Zentrale beim schnellen Umstieg auf Fahrly.</p>
+          </article>
         </div>
       </div>
     </div>
@@ -659,54 +719,102 @@
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="section section-alt">
+  <section id="faq" class="faq section section-alt">
     <div class="container">
-      <div class="faq-intro">
-        <div class="eyebrow">FAQ</div>
-        <h2>Häufig gestellte Fragen</h2>
-        <p>Alles, was Sie über unsere Plattform und Preise wissen müssen.</p>
+      <div class="faq__inner">
+        <div class="faq-intro">
+          <div class="eyebrow">FAQ</div>
+          <h2>Häufige Fragen von Mietwagenflotten</h2>
+        </div>
+        <ul class="faq-list">
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Funktioniert Fahrly auch mit Uber, Bolt oder FREE NOW?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>Ja. Fahrly wird bereits von Betrieben genutzt, die mit Plattformen wie Uber, Bolt oder FREE NOW arbeiten. Fahrten, Fahrer und Belege können Sie zentral im Fahrly-Dashboard verwalten, unabhängig von der Plattform.</p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Wie viele Fahrzeuge und Fahrer kann ich mit Fahrly verwalten?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>Fahrly ist für kleine Flotten mit wenigen Fahrzeugen genauso geeignet wie für größere Betriebe mit mehreren Dutzend Fahrzeugen. Sie können beliebig viele Fahrer und Fahrzeuge anlegen und verwalten – ohne Limit im System.</p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Wie schnell können wir von Excel/WhatsApp auf Fahrly umstellen?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>In der Regel sind Betriebe in wenigen Tagen vollständig umgestellt. Fahrer, Fahrzeuge und Standardprozesse werden einmalig angelegt, danach läuft die Disposition zentral über Fahrly statt über WhatsApp-Chatverläufe und Excel-Listen.</p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Können bestehende Fahrerdaten und Belege importiert werden?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>Ja. Bei der Einführung unterstützen wir Sie beim Import bestehender Fahrerdaten. Belege können Sie direkt in Fahrly hochladen oder per Foto erfassen – die Digitalisierung übernimmt das System automatisch.</p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Wie läuft die Einführung im Betrieb ab (Onboarding & Support)?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>Wir bieten persönliches Onboarding für Ihre Zentrale und unterstützen Sie beim Umstieg. Nach der Einführung steht Ihnen unser Support-Team für Fragen zur Verfügung – per E-Mail oder direkt im System.</p>
+            </div>
+          </li>
+          <li class="faq-item">
+            <h3 class="faq-question">
+              Welche Vertragslaufzeiten und Kündigungsfristen gibt es?
+              <span class="faq-item__icon">+</span>
+            </h3>
+            <div class="faq-answer">
+              <p>Fahrly können Sie monatlich kündbar testen – keine Mindestlaufzeit, keine Kreditkarte nötig. Nach der Testphase wählen Sie einen Plan, der monatlich oder jährlich abgerechnet werden kann. Kündigungen sind jederzeit möglich.</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul class="faq-list">
-        <li class="faq-item">
-          <h3 class="faq-question">Wie funktioniert die kostenlose Testversion?</h3>
-          <p class="faq-answer">Sie erhalten 2 Tage lang vollen Zugang zu allen Funktionen. Keine Kreditkarte erforderlich. Sie können jederzeit während der Testphase ohne Gebühren kündigen.</p>
-        </li>
-        <li class="faq-item">
-          <h3 class="faq-question">Kann ich später den Plan wechseln?</h3>
-          <p class="faq-answer">Absolut. Sie können Ihren Plan jederzeit upgraden oder downgraden. Änderungen treten sofort in Kraft, und wir passen die Abrechnung entsprechend an.</p>
-        </li>
-        <li class="faq-item">
-          <h3 class="faq-question">Welche Zahlungsmethoden akzeptieren Sie?</h3>
-          <p class="faq-answer">Wir akzeptieren alle gängigen Kreditkarten und Banküberweisungen. Alle Zahlungen werden sicher über unsere Zahlungspartner verarbeitet.</p>
-        </li>
-        <li class="faq-item">
-          <h3 class="faq-question">Sind meine Daten sicher?</h3>
-          <p class="faq-answer">Ja. Wir verwenden branchenübliche Verschlüsselung, regelmäßige Sicherheitsaudits und erfüllen DSGVO-Standards. Ihre Daten sind jederzeit geschützt.</p>
-        </li>
-        <li class="faq-item">
-          <h3 class="faq-question">Bieten Sie Rückerstattungen an?</h3>
-          <p class="faq-answer">Wir bieten eine 30-tägige Geld-zurück-Garantie auf alle kostenpflichtigen Pläne. Wenn Sie nicht zufrieden sind, kontaktieren Sie uns innerhalb von 30 Tagen für eine vollständige Rückerstattung.</p>
-        </li>
-        <li class="faq-item">
-          <h3 class="faq-question">Kann ich dies für mein Team verwenden?</h3>
-          <p class="faq-answer">Ja! Alle Pläne unterstützen Teamarbeit. Sie können Teammitglieder einladen, Berechtigungen festlegen und in Echtzeit zusammenarbeiten.</p>
-        </li>
-      </ul>
     </div>
   </section>
 
-  <!-- Footer will be loaded here -->
-  <div id="footer-container"></div>
+  <!-- START: footer (source: components/footer.html) -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__left">
+        <p class="site-footer__brand">Fahrly</p>
+        <p class="site-footer__tagline">
+          Fuhrparkverwaltung für Mietwagenflotten – weniger Chaos, mehr Kontrolle.
+        </p>
+        <p class="site-footer__support">
+          Support: <a href="mailto:support@fahrly.de">support@fahrly.de</a> – Antwort in der Regel innerhalb von 24&nbsp;Stunden.
+        </p>
+      </div>
 
-  <script>
-    // Load footer component
-    fetch('components/footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-container').innerHTML = data;
-      })
-      .catch(error => console.error('Error loading footer:', error));
-  </script>
+      <div class="site-footer__right">
+        <a href="/index.html#features" class="site-footer__link">Funktionen</a>
+        <a href="/index.html#pricing" class="site-footer__link">Preise</a>
+        <a href="/index.html#security" class="site-footer__link">Sicherheit</a>
+        <a href="/index.html#faq" class="site-footer__link">FAQ</a>
+        <a href="/pages/impressum.html" class="site-footer__link">Impressum</a>
+        <a href="/pages/datenschutz.html" class="site-footer__link">Datenschutz</a>
+        <a href="/pages/agb.html" class="site-footer__link">AGB</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2025 Fahrly. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+  <!-- END: footer -->
 </body>
 </html>
 

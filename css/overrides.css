@@ -1,46 +1,49 @@
 /* Premium Design Overrides - Final Polish */
 
-/* Enhanced Shadows & Depth */
+/* Enhanced Shadows & Depth - Using Global Tokens */
 .browser-mockup {
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(79, 70, 229, 0.1),
-    0 8px 32px rgba(79, 70, 229, 0.2);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(79, 70, 229, 0.1), var(--shadow-accent);
 }
 
 .browser-mockup:hover {
-  box-shadow: 
-    0 24px 72px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(79, 70, 229, 0.2),
-    0 12px 48px rgba(79, 70, 229, 0.3);
-  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(79, 70, 229, 0.2), var(--shadow-accent-lg);
+  transform: translateY(-4px);
 }
 
 .feature-card {
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .feature-card:hover {
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(79, 70, 229, 0.2),
-    0 4px 16px rgba(79, 70, 229, 0.15);
-  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(79, 70, 229, 0.2), 0 4px 16px rgba(79, 70, 229, 0.15);
+  transform: translateY(-2px);
+}
+
+.feature-card--highlight {
+  box-shadow: var(--shadow-md), var(--shadow-glow), 0 0 0 1px rgba(56, 189, 248, 0.3);
+}
+
+.feature-card--highlight:hover {
+  box-shadow: var(--shadow-lg), var(--shadow-glow), 0 0 0 1px rgba(56, 189, 248, 0.5);
+  transform: translateY(-3px);
 }
 
 .pricing-card {
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .pricing-card:hover {
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(79, 70, 229, 0.2);
-  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(79, 70, 229, 0.2);
+  transform: translateY(-2px);
+}
+
+.pricing-card--featured {
+  box-shadow: var(--shadow-md), var(--shadow-glow), 0 0 0 1px rgba(56, 189, 248, 0.3);
+}
+
+.pricing-card--featured:hover {
+  box-shadow: var(--shadow-lg), var(--shadow-glow), 0 0 0 1px rgba(56, 189, 248, 0.5);
+  transform: translateY(-3px);
 }
 
 /* Enhanced Hero Mockup - More Product-Like */
@@ -85,65 +88,22 @@
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
 }
 
-/* Enhanced Feature Icons - Styled CSS Icons */
-.feature-icon {
-  background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(79, 70, 229, 0.1) 100%);
-  border: 1px solid rgba(79, 70, 229, 0.2);
-  box-shadow: 
-    0 4px 12px rgba(79, 70, 229, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+/* Enhanced Feature Icons - SVG Icons */
+.feature-card__icon {
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);
 }
 
-.feature-icon::before {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
-  transform: rotate(45deg);
+.feature-card:hover .feature-card__icon {
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
 }
 
-.feature-card:hover .feature-icon {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-  border-color: var(--accent);
-  box-shadow: 
-    0 8px 24px rgba(79, 70, 229, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.feature-card--highlight .feature-card__icon {
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
 }
 
-.feature-card:hover .feature-icon::before {
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Enhanced Pricing Cards */
-.pricing-card.starter {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
-}
-
-.pricing-card.featured {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(79, 70, 229, 0.08) 100%);
-  border: 2px solid var(--accent);
-  transform: translateY(-4px) scale(1.05);
-  position: relative;
-}
-
-/* Gradient border effect handled in components.css */
-
-.pricing-card.featured:hover {
-  transform: translateY(-8px) scale(1.08);
-  box-shadow: 
-    0 20px 48px rgba(0, 0, 0, 0.5),
-    0 0 0 1px var(--accent),
-    0 16px 40px rgba(79, 70, 229, 0.4);
-}
-
-.pricing-card.business {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
-}
-
-/* Enhanced Pricing Badge - Green dot indicator already in components.css */
-.pricing-badge {
-  box-shadow: 
-    0 4px 12px rgba(79, 70, 229, 0.4),
-    0 0 0 2px rgba(79, 70, 229, 0.2);
+/* Enhanced Pricing Cards - Updated for new structure */
+.pricing-card__badge {
+  box-shadow: 0 2px 8px rgba(34, 211, 238, 0.4);
 }
 
 /* Enhanced Buttons */
@@ -184,54 +144,20 @@
 
 /* FAQ enhancements handled in components.css */
 
-/* Enhanced Pricing Section Background */
-#pricing.section {
-  background: 
-    radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 60%),
-    var(--bg-main);
-  position: relative;
-}
+/* Enhanced Pricing Section Background - Now handled by section-bg--muted utility */
 
-#pricing.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.3;
-}
+/* Scroll animations now handled in base.css with standardized motion tokens */
 
-/* Refined Scroll Animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Enhanced Section Alternating Backgrounds */
-.section-alt {
-  background: 
-    radial-gradient(circle at 30% 50%, rgba(79, 70, 229, 0.04) 0%, transparent 50%),
-    var(--bg-surface-alt);
-  position: relative;
-}
+/* Enhanced Section Alternating Backgrounds - Now handled by section-bg utilities */
 
 /* Mobile Refinements */
 @media (max-width: 768px) {
-  .pricing-card.featured {
-    transform: translateY(-2px) scale(1.02);
+  .pricing-card--featured {
+    transform: none;
   }
   
-  .pricing-card.featured:hover {
-    transform: translateY(-4px) scale(1.02);
+  .pricing-card--featured:hover {
+    transform: translateY(-2px);
   }
   
   .browser-mockup:hover {

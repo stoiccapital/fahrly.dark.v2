@@ -22,16 +22,19 @@
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   
-  /* Radii */
-  --radius: 0.5rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  /* Radii - Global System */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius: var(--radius-md); /* Legacy support */
   
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  /* Shadows - Global System */
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 40px rgba(80, 200, 255, 0.25);
   --shadow-accent: 0 8px 24px rgba(79, 70, 229, 0.3);
   --shadow-accent-lg: 0 12px 40px rgba(79, 70, 229, 0.4);
   
@@ -39,6 +42,14 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
   --transition-slow: 0.4s ease;
+  
+  /* Motion Tokens */
+  --motion-fast: 160ms;
+  --motion-normal: 220ms;
+  --motion-slow: 280ms;
+  
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 /* Reset */
@@ -132,11 +143,39 @@ a:hover {
 /* Scroll Animation Classes */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(10px);
+  transition:
+    opacity var(--motion-slow) var(--ease-out-soft),
+    transform var(--motion-slow) var(--ease-out-soft);
 }
 
-.fade-in.visible {
+.fade-in.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Focus States for Accessibility */
+a:focus-visible,
+button:focus-visible,
+.faq-question:focus-visible {
+  outline: 2px solid rgba(56, 189, 248, 0.9);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
