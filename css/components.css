@@ -482,6 +482,194 @@
   line-height: 1.5;
 }
 
+/* ===== Hero Dashboard ===== */
+.hero-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.hero-stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition-base);
+}
+
+.hero-stat-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.hero-stat-card__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.hero-stat-card__value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.hero-table-wrapper {
+  margin-top: 4px;
+}
+
+.hero-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.hero-table__row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.hero-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+}
+
+.hero-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.hero-table__cell--fahrt {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+.hero-table__cell--name {
+  font-weight: 500;
+}
+
+.hero-table__cell--einnahme {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-table__row--header .hero-table__cell {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive adjustments for hero dashboard */
+@media (max-width: 768px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .hero-stat-card {
+    padding: 14px;
+  }
+
+  .hero-stat-card__value {
+    font-size: 1.3rem;
+  }
+
+  .hero-table__row {
+    grid-template-columns: 1fr 0.9fr 1fr;
+    gap: 10px;
+    padding: 8px 0;
+  }
+
+  .hero-table__cell {
+    font-size: 0.8rem;
+  }
+
+  .hero-table__cell--fahrt {
+    font-size: 0.75rem;
+  }
+
+  .hero-table__row--header .hero-table__cell {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .hero-stat-card__value {
+    font-size: 1.2rem;
+  }
+
+  .hero-table__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 10px 0;
+  }
+
+  .hero-table__row--header {
+    display: none;
+  }
+
+  .hero-table__cell {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+
+  .hero-table__cell::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-table__cell--fahrt::before {
+    content: "Letzte Fahrt: ";
+  }
+
+  .hero-table__cell--name::before {
+    content: "Name: ";
+  }
+
+  .hero-table__cell--einnahme::before {
+    content: "Einnahme: ";
+  }
+}
+
 /* ===== Trusted By Brands Carousel ===== */
 .trusted-by {
   padding: var(--space-2xl) 0;
@@ -909,7 +1097,7 @@
 .feature-stack {
   display: flex;
   flex-direction: column;
-  gap: 4rem; /* Reduced gap between features */
+  gap: 3rem; /* Reduced gap between features */
   margin-top: 3rem;
   position: relative;
   z-index: 1;
@@ -922,8 +1110,8 @@
   grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.8fr); /* 30% text, 70% visuals */
   gap: 56px;
   align-items: flex-start;
-  margin-bottom: 60px;
-  min-height: 80vh; /* Reduced min-height for tighter spacing */
+  margin-bottom: 40px;
+  min-height: 65vh; /* Reduced min-height for tighter spacing */
   opacity: 1;
   visibility: visible;
 }
@@ -1067,10 +1255,1561 @@
   box-shadow: 0 50px 140px rgba(0,0,0,0.65);
 }
 
+/* ===== Feature Mockups (All 6 features share identical base styles) ===== */
+.dispatch-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.dispatch-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.dispatch-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dispatch-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dispatch-mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.dispatch-mockup__header-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.dispatch-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.dispatch-mockup__header-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.dispatch-mockup__content {
+  padding: 24px;
+}
+
+.dispatch-mockup__table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dispatch-mockup__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.dispatch-mockup__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.dispatch-mockup__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.dispatch-mockup__cell--driver {
+  font-weight: 500;
+}
+
+.dispatch-mockup__cell--time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.dispatch-mockup__cell--status {
+  justify-content: flex-start;
+}
+
+.dispatch-mockup__row--header .dispatch-mockup__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dispatch-mockup__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.dispatch-mockup__bar {
+  height: 8px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 80px;
+}
+
+.dispatch-mockup__bar--blue {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.dispatch-mockup__bar--green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.dispatch-mockup__bar--orange {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* Responsive adjustments for dispatch mockup */
+@media (max-width: 768px) {
+  .dispatch-mockup {
+    padding: 12px;
+  }
+
+  .dispatch-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .dispatch-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .dispatch-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .dispatch-mockup__content {
+    padding: 16px;
+  }
+
+  .dispatch-mockup__row {
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .dispatch-mockup__cell {
+    font-size: 13px;
+  }
+
+  .dispatch-mockup__cell--time {
+    font-size: 12px;
+  }
+
+  .dispatch-mockup__row--header .dispatch-mockup__cell {
+    font-size: 10px;
+  }
+
+  .dispatch-mockup__bar {
+    max-width: 60px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dispatch-mockup__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .dispatch-mockup__cell--status {
+    grid-column: 1;
+  }
+}
+
+/* ===== Timesheet Mockup UI ===== */
+.timesheet-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.timesheet-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.timesheet-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timesheet-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timesheet-mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.timesheet-mockup__header-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.timesheet-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.timesheet-mockup__header-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.timesheet-mockup__content {
+  padding: 24px;
+}
+
+.timesheet-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.timesheet-card__date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.timesheet-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timesheet-card__time-range {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.timesheet-card__entries {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  gap: 12px;
+}
+
+.timesheet-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+
+.timesheet-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timesheet-pill {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timesheet-pill--blue {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.timesheet-pill--orange {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.timesheet-pill--purple {
+  background: linear-gradient(135deg, #7b61ff, #a78bfa);
+}
+
+.timesheet-row__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.timesheet-row__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timesheet-row__time {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.timesheet-card__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(123, 97, 255, 0.08));
+  border-top: 1px solid #e9ecef;
+}
+
+.timesheet-card__summary-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timesheet-card__summary-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3b82f6;
+  letter-spacing: -0.02em;
+}
+
+.timesheet-card__table {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.timesheet-table__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.8fr 0.8fr 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.timesheet-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timesheet-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.timesheet-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.timesheet-table__cell--name {
+  font-weight: 500;
+}
+
+.timesheet-table__cell--umsatz {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timesheet-table__cell--stunden,
+.timesheet-table__cell--fahrten,
+.timesheet-table__cell--rate {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.timesheet-table__row--header .timesheet-table__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.timesheet-table__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Responsive adjustments for timesheet mockup */
+@media (max-width: 768px) {
+  .timesheet-mockup {
+    padding: 12px;
+  }
+
+  .timesheet-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .timesheet-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .timesheet-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .timesheet-mockup__content {
+    padding: 16px;
+  }
+
+  .timesheet-card__date {
+    padding: 16px 20px;
+  }
+
+  .timesheet-card__table {
+    padding: 16px 20px;
+  }
+
+  .timesheet-table__row {
+    grid-template-columns: 1.2fr 1fr 0.7fr 0.7fr 0.9fr;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .timesheet-table__cell {
+    font-size: 13px;
+  }
+
+  .timesheet-table__cell--stunden,
+  .timesheet-table__cell--fahrten,
+  .timesheet-table__cell--rate {
+    font-size: 12px;
+  }
+
+  .timesheet-table__row--header .timesheet-table__cell {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .timesheet-card__date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .timesheet-card__table {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .timesheet-table__row {
+    grid-template-columns: 120px 90px 70px 70px 90px;
+    min-width: 440px;
+    gap: 10px;
+  }
+
+  .timesheet-table__cell {
+    font-size: 12px;
+  }
+
+  .timesheet-table__row--header .timesheet-table__cell {
+    font-size: 9px;
+  }
+}
+
+/* ===== Receipt Mockup UI ===== */
+.receipt-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.receipt-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.receipt-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.receipt-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.receipt-mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.receipt-mockup__header-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.receipt-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.receipt-mockup__header-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.receipt-mockup__content {
+  padding: 24px;
+}
+
+.receipt-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.receipt-card__date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.receipt-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.receipt-card__table {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.receipt-table__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1.5fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.receipt-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.receipt-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.receipt-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.receipt-table__cell--datum {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.receipt-table__cell--wert {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.receipt-table__cell--typ {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.receipt-table__cell--fahrer {
+  font-weight: 500;
+}
+
+.receipt-table__cell--fahrzeug {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.receipt-table__row--header .receipt-table__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.receipt-table__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Responsive adjustments for receipt mockup */
+@media (max-width: 768px) {
+  .receipt-mockup {
+    padding: 12px;
+  }
+
+  .receipt-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .receipt-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .receipt-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .receipt-mockup__content {
+    padding: 16px;
+  }
+
+  .receipt-card__date {
+    padding: 16px 20px;
+  }
+
+  .receipt-card__table {
+    padding: 16px 20px;
+  }
+
+  .receipt-table__row {
+    grid-template-columns: 1.2fr 0.9fr 0.9fr 1fr 1.2fr;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .receipt-table__cell {
+    font-size: 13px;
+  }
+
+  .receipt-table__cell--datum,
+  .receipt-table__cell--typ,
+  .receipt-table__cell--fahrzeug {
+    font-size: 12px;
+  }
+
+  .receipt-table__row--header .receipt-table__cell {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .receipt-card__date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .receipt-card__table {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .receipt-table__row {
+    grid-template-columns: 140px 80px 90px 100px 120px;
+    min-width: 530px;
+    gap: 10px;
+  }
+
+  .receipt-table__cell {
+    font-size: 12px;
+  }
+
+  .receipt-table__row--header .receipt-table__cell {
+    font-size: 9px;
+  }
+}
+
+/* ===== E-Signature Mockup UI ===== */
+.esign-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.esign-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.esign-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.esign-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.esign-mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.esign-mockup__header-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.esign-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.esign-mockup__header-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.esign-mockup__content {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.esign-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.esign-doc {
+  display: flex;
+  flex-direction: column;
+}
+
+.esign-doc__header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(123, 97, 255, 0.06));
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.esign-doc__header-line {
+  height: 4px;
+  width: 60%;
+  background: linear-gradient(90deg, #3b82f6, #7b61ff);
+  border-radius: 2px;
+}
+
+.esign-doc__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.esign-doc__paragraph {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+.esign-doc__paragraph:nth-child(1) {
+  width: 95%;
+}
+
+.esign-doc__paragraph:nth-child(2) {
+  width: 88%;
+}
+
+.esign-doc__paragraph:nth-child(3) {
+  width: 92%;
+}
+
+.esign-doc__paragraph:nth-child(4) {
+  width: 75%;
+}
+
+.esign-doc__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.esign-doc__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.esign-doc__spacer {
+  height: 12px;
+}
+
+.esign-doc__separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 24px;
+}
+
+.esign-doc__signature {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.esign-signature-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.esign-signature-line__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+.esign-signature-line__line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.esign-signature-line__button {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3b82f6, #7b61ff);
+  padding: 8px 16px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+.esign-signature-stroke {
+  height: 60px;
+  width: 100%;
+  position: relative;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.esign-signature-stroke--signed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 32px;
+  background: transparent;
+  border: 2.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 16px 12px 20px 14px / 14px 16px 18px 12px;
+  transform: rotate(-1.5deg);
+  opacity: 0.8;
+}
+
+.esign-signature-stroke--signed::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  width: 140px;
+  height: 24px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px 8px 16px 10px / 10px 12px 14px 8px;
+  transform: rotate(1deg);
+  opacity: 0.6;
+}
+
+.esign-signature-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments for e-signature mockup */
+@media (max-width: 768px) {
+  .esign-mockup {
+    padding: 12px;
+  }
+
+  .esign-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .esign-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .esign-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .esign-mockup__content {
+    padding: 16px;
+  }
+
+  .esign-card {
+    max-width: 100%;
+  }
+
+  .esign-doc__header {
+    padding: 16px 20px;
+  }
+
+  .esign-doc__body {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .esign-doc__signature {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .esign-signature-line__button {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .esign-signature-stroke {
+    height: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .esign-mockup__content {
+    padding: 16px;
+  }
+
+  .esign-doc__header {
+    padding: 14px 18px;
+  }
+
+  .esign-doc__body {
+    padding: 18px;
+    gap: 10px;
+  }
+
+  .esign-doc__paragraph {
+    height: 10px;
+  }
+
+  .esign-doc__title {
+    font-size: 16px;
+  }
+
+  .esign-doc__text {
+    font-size: 12px;
+  }
+
+  .esign-doc__spacer {
+    height: 10px;
+  }
+
+  .esign-doc__signature {
+    padding: 18px;
+    gap: 10px;
+  }
+
+  .esign-signature-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .esign-signature-line__line {
+    width: 100%;
+  }
+
+  .esign-signature-stroke {
+    height: 36px;
+  }
+}
+
+/* ===== Salary Mockup UI ===== */
+.salary-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.salary-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.salary-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.salary-mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.salary-mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.salary-mockup__header-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.salary-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.salary-mockup__header-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.salary-mockup__content {
+  padding: 24px;
+}
+
+.salary-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.salary-card__date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.salary-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.salary-card__table {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.salary-table__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.salary-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.salary-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.salary-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.salary-table__cell--name {
+  font-weight: 500;
+}
+
+.salary-table__cell--percent {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.salary-table__cell--gehalt {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.salary-table__row--header .salary-table__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.salary-table__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Responsive adjustments for salary mockup */
+@media (max-width: 768px) {
+  .salary-mockup {
+    padding: 12px;
+  }
+
+  .salary-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .salary-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .salary-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .salary-mockup__content {
+    padding: 16px;
+  }
+
+  .salary-card__date {
+    padding: 16px 20px;
+  }
+
+  .salary-card__table {
+    padding: 16px 20px;
+  }
+
+  .salary-table__row {
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .salary-table__cell {
+    font-size: 13px;
+  }
+
+  .salary-table__row--header .salary-table__cell {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .salary-card__date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .salary-card__table {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .salary-table__row {
+    grid-template-columns: 120px 70px 100px;
+    min-width: 290px;
+    gap: 10px;
+  }
+
+  .salary-table__cell {
+    font-size: 12px;
+  }
+
+  .salary-table__row--header .salary-table__cell {
+    font-size: 9px;
+  }
+}
+
+/* ===== Maintenance Mockup UI ===== */
+.maintenance-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.maintenance-mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.maintenance-mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.maintenance-mockup__header {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 48px;
+  position: relative;
+  z-index: 10;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.maintenance-mockup__header-dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  position: relative;
+  z-index: 11;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.maintenance-mockup__header-dot:nth-child(1) {
+  background: #ff5f57 !important;
+}
+
+.maintenance-mockup__header-dot:nth-child(2) {
+  background: #ffbd2e !important;
+}
+
+.maintenance-mockup__header-dot:nth-child(3) {
+  background: #28ca42 !important;
+}
+
+.maintenance-mockup__content {
+  padding: 24px;
+}
+
+.maintenance-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.maintenance-card__date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.maintenance-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.maintenance-card__table {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.maintenance-table__row {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.maintenance-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.maintenance-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.maintenance-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.maintenance-table__cell--aufgabe {
+  font-weight: 500;
+}
+
+.maintenance-table__cell--datum {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.maintenance-table__cell--kilometer {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.maintenance-table__cell--status {
+  justify-content: flex-start;
+}
+
+.maintenance-table__row--header .maintenance-table__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.maintenance-status {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.maintenance-status--offen {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.maintenance-status--erledigt {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+/* Responsive adjustments for maintenance mockup */
+@media (max-width: 768px) {
+  .maintenance-mockup {
+    padding: 12px;
+  }
+
+  .maintenance-mockup__monitor {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .maintenance-mockup__screen {
+    border-radius: 16px;
+  }
+
+  .maintenance-mockup__header {
+    padding: 12px 16px;
+  }
+
+  .maintenance-mockup__content {
+    padding: 16px;
+  }
+
+  .maintenance-card__date {
+    padding: 16px 20px;
+  }
+
+  .maintenance-card__table {
+    padding: 16px 20px;
+  }
+
+  .maintenance-table__row {
+    grid-template-columns: 1.5fr 1fr 0.9fr 0.9fr;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .maintenance-table__cell {
+    font-size: 13px;
+  }
+
+  .maintenance-table__cell--datum,
+  .maintenance-table__cell--kilometer {
+    font-size: 12px;
+  }
+
+  .maintenance-table__row--header .maintenance-table__cell {
+    font-size: 10px;
+  }
+
+  .maintenance-status {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .maintenance-card__date {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .maintenance-card__table {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+
+  .maintenance-table__row {
+    grid-template-columns: 140px 100px 80px 90px;
+    min-width: 410px;
+    gap: 10px;
+  }
+
+  .maintenance-table__cell {
+    font-size: 12px;
+  }
+
+  .maintenance-table__row--header .maintenance-table__cell {
+    font-size: 9px;
+  }
+
+  .maintenance-status {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
 /* Responsive: Feature Stack */
 @media (max-width: 768px) {
   .feature-stack {
-    gap: 8rem; /* Double the mobile gap as well */
+    gap: 4rem; /* Double the mobile gap as well */
   }
 
   .feature-row {
