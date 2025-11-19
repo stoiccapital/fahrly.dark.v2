@@ -15,251 +15,13 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/overrides.css">
+  
+  <!-- JavaScript -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
-  <script>
-    // FAQ Accordion
-    document.addEventListener('DOMContentLoaded', function() {
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', function() {
-          const isActive = item.classList.contains('active');
-          // Close all items
-          faqItems.forEach(i => i.classList.remove('active'));
-          // Open clicked item if it wasn't active
-          if (!isActive) {
-            item.classList.add('active');
-          }
-        });
-      });
-    });
-
-    // Scroll animations with IntersectionObserver
-    document.addEventListener('DOMContentLoaded', function() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            // Only observe once to prevent re-triggering
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      // Observe only major containers, not individual cards
-      const containersToAnimate = document.querySelectorAll(
-        '#hero .hero-visual, ' +
-        '#features .feature-stack, ' +
-        '#pricing .pricing-grid, ' +
-        '#testimonials .testimonials-grid, ' +
-        '#security .security-grid, ' +
-        '#faq .faq-list'
-      );
-      containersToAnimate.forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
-      });
-    });
-
-
-    // Testimonial Carousel
-    document.addEventListener('DOMContentLoaded', function() {
-      const testimonialSection = document.querySelector('.testimonial-section');
-      if (!testimonialSection) return;
-
-      const track = testimonialSection.querySelector('.testimonial-track');
-      const cards = testimonialSection.querySelectorAll('.testimonial-card');
-      const prevBtn = testimonialSection.querySelector('.testimonial-nav--prev');
-      const nextBtn = testimonialSection.querySelector('.testimonial-nav--next');
-      
-      if (!track || !cards.length || !prevBtn || !nextBtn) return;
-
-      let currentIndex = 0;
-      let isTransitioning = false;
-      let autoplayInterval = null;
-      const autoplayDelay = 6500; // 6.5 seconds
-      
-      function getCardsPerView() {
-        return window.innerWidth <= 768 ? 1 : 2;
-      }
-      
-      function getTotalSlides() {
-        return Math.ceil(cards.length / getCardsPerView());
-      }
-
-      function updateCarouselPosition() {
-        const cardsPerView = getCardsPerView();
-        
-        // Wait for cards to have width
-        if (!cards[0] || cards[0].offsetWidth === 0) {
-          setTimeout(updateCarouselPosition, 50);
-          return;
-        }
-        
-        const cardWidth = cards[0].offsetWidth;
-        const gap = parseFloat(getComputedStyle(track).gap) || 24;
-        const slideWidth = (cardWidth + gap) * cardsPerView;
-        const translateX = -(currentIndex * slideWidth);
-        
-        track.style.transition = 'transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1)';
-        track.style.transform = `translateX(${translateX}px)`;
-        updateNavButtons();
-      }
-
-      function updateNavButtons() {
-        const totalSlides = getTotalSlides();
-        // Use opacity instead of disabled to allow looping
-        prevBtn.style.opacity = '1';
-        nextBtn.style.opacity = '1';
-        prevBtn.removeAttribute('disabled');
-        nextBtn.removeAttribute('disabled');
-      }
-
-      function goToSlide(index) {
-        if (isTransitioning) return;
-        
-        const totalSlides = getTotalSlides();
-        currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
-        isTransitioning = true;
-        
-        updateCarouselPosition();
-        
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 600);
-      }
-
-      function nextSlide() {
-        const totalSlides = getTotalSlides();
-        if (currentIndex < totalSlides - 1) {
-          goToSlide(currentIndex + 1);
-        } else {
-          goToSlide(0); // Loop back to start
-        }
-      }
-
-      function prevSlide() {
-        const totalSlides = getTotalSlides();
-        if (currentIndex > 0) {
-          goToSlide(currentIndex - 1);
-        } else {
-          goToSlide(totalSlides - 1); // Loop to end
-        }
-      }
-
-      function startAutoplay() {
-        stopAutoplay();
-        autoplayInterval = setInterval(() => {
-          nextSlide();
-        }, autoplayDelay);
-      }
-
-      function stopAutoplay() {
-        if (autoplayInterval) {
-          clearInterval(autoplayInterval);
-          autoplayInterval = null;
-        }
-      }
-
-      // Button event listeners
-      nextBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        nextSlide();
-        stopAutoplay();
-        startAutoplay();
-      });
-
-      prevBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        prevSlide();
-        stopAutoplay();
-        startAutoplay();
-      });
-
-      // Keyboard navigation
-      testimonialSection.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          prevSlide();
-          stopAutoplay();
-          startAutoplay();
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          nextSlide();
-          stopAutoplay();
-          startAutoplay();
-        }
-      });
-
-      // Pause autoplay on hover
-      testimonialSection.addEventListener('mouseenter', stopAutoplay);
-      testimonialSection.addEventListener('mouseleave', startAutoplay);
-
-      // Handle window resize
-      let resizeTimeout;
-      let lastCardsPerView = getCardsPerView();
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          const newCardsPerView = getCardsPerView();
-          if (newCardsPerView !== lastCardsPerView) {
-            lastCardsPerView = newCardsPerView;
-            currentIndex = 0;
-            updateCarouselPosition();
-          }
-        }, 250);
-      });
-
-      // Initialize after a short delay to ensure layout is ready
-      setTimeout(() => {
-        updateCarouselPosition();
-        startAutoplay();
-      }, 100);
-    });
-  </script>
-
-  <!-- START: navbar (source: components/navbar.html) -->
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="/index.html#hero" class="site-header__logo">Fahrly</a>
-
-      <nav class="site-nav">
-        <a href="/index.html#features" class="site-nav__link">Funktionen</a>
-        <a href="/index.html#pricing" class="site-nav__link">Preise</a>
-        <a href="/index.html#testimonials" class="site-nav__link">Kunden</a>
-        <a href="/index.html#security" class="site-nav__link">Sicherheit</a>
-        <a href="/index.html#faq" class="site-nav__link">FAQ</a>
-      </nav>
-
-      <div class="site-header__actions">
-        <a href="https://qpp.fahrlygo.de/account/login" class="site-header__secondary">Login</a>
-        <a href="https://qpp.fahrlygo.de/account/get-signup-link" class="btn btn-primary">Jetzt testen</a>
-      </div>
-    </div>
-  </header>
-  <!-- END: navbar -->
-
-  <script>
-    // Sticky header scroll effect
-    document.addEventListener('DOMContentLoaded', function() {
-      window.addEventListener('scroll', function() {
-        const header = document.querySelector('.site-header');
-        if (header && window.scrollY > 50) {
-          header.classList.add('site-header--scrolled');
-        } else if (header) {
-          header.classList.remove('site-header--scrolled');
-        }
-      });
-    });
-  </script>
+  <!-- Navbar will be loaded here -->
+  <div id="navbar-container"></div>
 
   <!-- Hero Section -->
   <section id="hero" class="hero section section-bg--hero">
@@ -540,7 +302,7 @@
             <h3 class="pricing-card__title">Für kleinere Mietwagenflotten</h3>
             <div class="pricing-card__price-row">
               <span class="pricing-card__price">29 €</span>
-              <span class="pricing-card__unit">pro Fahrzeug / Monat</span>
+              <span class="pricing-card__unit">/ Monat</span>
             </div>
             <p class="pricing-card__hint">Für 1 Fahrer, monatlich kündbar.</p>
             <ul class="pricing-card__features">
@@ -557,7 +319,7 @@
             <h3 class="pricing-card__title">Für wachsende Flotten</h3>
             <div class="pricing-card__price-row">
               <span class="pricing-card__price">49 €</span>
-              <span class="pricing-card__unit">pro Fahrzeug / Monat</span>
+              <span class="pricing-card__unit">/ Monat</span>
             </div>
             <p class="pricing-card__hint">Ab 2 Fahrer, mehrere Disponenten möglich.</p>
             <ul class="pricing-card__features">
@@ -729,15 +491,6 @@
         <ul class="faq-list">
           <li class="faq-item">
             <h3 class="faq-question">
-              Funktioniert Fahrly auch mit Uber, Bolt oder FREE NOW?
-              <span class="faq-item__icon">+</span>
-            </h3>
-            <div class="faq-answer">
-              <p>Ja. Fahrly wird bereits von Betrieben genutzt, die mit Plattformen wie Uber, Bolt oder FREE NOW arbeiten. Fahrten, Fahrer und Belege können Sie zentral im Fahrly-Dashboard verwalten, unabhängig von der Plattform.</p>
-            </div>
-          </li>
-          <li class="faq-item">
-            <h3 class="faq-question">
               Wie viele Fahrzeuge und Fahrer kann ich mit Fahrly verwalten?
               <span class="faq-item__icon">+</span>
             </h3>
@@ -786,35 +539,8 @@
     </div>
   </section>
 
-  <!-- START: footer (source: components/footer.html) -->
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__left">
-        <p class="site-footer__brand">Fahrly</p>
-        <p class="site-footer__tagline">
-          Fuhrparkverwaltung für Mietwagenflotten – weniger Chaos, mehr Kontrolle.
-        </p>
-        <p class="site-footer__support">
-          Support: <a href="mailto:support@fahrly.de">support@fahrly.de</a> – Antwort in der Regel innerhalb von 24&nbsp;Stunden.
-        </p>
-      </div>
-
-      <div class="site-footer__right">
-        <a href="/index.html#features" class="site-footer__link">Funktionen</a>
-        <a href="/index.html#pricing" class="site-footer__link">Preise</a>
-        <a href="/index.html#security" class="site-footer__link">Sicherheit</a>
-        <a href="/index.html#faq" class="site-footer__link">FAQ</a>
-        <a href="/pages/impressum.html" class="site-footer__link">Impressum</a>
-        <a href="/pages/datenschutz.html" class="site-footer__link">Datenschutz</a>
-        <a href="/pages/agb.html" class="site-footer__link">AGB</a>
-      </div>
-    </div>
-
-    <div class="site-footer__bottom">
-      <p>© 2025 Fahrly. Alle Rechte vorbehalten.</p>
-    </div>
-  </footer>
-  <!-- END: footer -->
+  <!-- Footer will be loaded here -->
+  <div id="footer-container"></div>
 </body>
 </html>
 
