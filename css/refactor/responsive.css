@@ -53,7 +53,7 @@
   .security-intro,
   .faq-intro,
   .features-intro {
-    margin-bottom: 40px;
+    margin-bottom: 5rem;
   }
   
   .section-intro .eyebrow,
@@ -264,8 +264,8 @@
   }
   
   .iphone-mockup__screen {
-    /* Maintain iPhone 16 aspect ratio: 71.6 / 147.6 */
-    aspect-ratio: 71.6 / 147.6;
+    /* Maintain aspect ratio: 330 / 682 */
+    aspect-ratio: 330 / 682;
     padding-top: 36px;
     max-width: 100%;
     box-sizing: border-box;
@@ -327,7 +327,7 @@
   /* Feature stack gap - clean spacing */
   .feature-stack {
     gap: 3rem;
-    margin-top: 2rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
   }
