@@ -6,6 +6,8 @@ function loadNavbar() {
       document.getElementById('navbar-container').innerHTML = data;
       // Initialize sticky header scroll effect after navbar is loaded
       initStickyHeader();
+      // Initialize navbar scroll behavior (disable smooth scroll on navbar clicks)
+      initNavbarScrollBehavior();
     })
     .catch(error => console.error('Error loading navbar:', error));
 }
@@ -29,6 +31,45 @@ function initStickyHeader() {
     } else if (header) {
       header.classList.remove('site-header--scrolled');
     }
+  });
+}
+
+// Disable smooth scroll animation for navbar link clicks
+function initNavbarScrollBehavior() {
+  const navbarLinks = document.querySelectorAll('.site-nav__link, .site-header__logo');
+  
+  navbarLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      // Only handle hash links (anchor links)
+      if (href && href.includes('#')) {
+        const hash = href.split('#')[1];
+        const targetElement = document.getElementById(hash);
+        
+        if (targetElement) {
+          e.preventDefault();
+          
+          // Temporarily disable smooth scrolling
+          const html = document.documentElement;
+          const originalScrollBehavior = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          
+          // Scroll to target instantly
+          targetElement.scrollIntoView({ behavior: 'auto' });
+          
+          // Update URL without triggering scroll
+          if (history.pushState) {
+            history.pushState(null, null, '#' + hash);
+          }
+          
+          // Restore original scroll behavior after a short delay
+          setTimeout(() => {
+            html.style.scrollBehavior = originalScrollBehavior;
+          }, 0);
+        }
+      }
+    });
   });
 }
 
