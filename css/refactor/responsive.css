@@ -236,6 +236,15 @@
     bottom: auto !important;
   }
   
+  /* Feature 1: Remove aspect ratio constraint for iPhone mockup */
+  /* Target first feature-row (Feature 1) which contains the iPhone mockup */
+  .feature-row:first-of-type .feature-media-card {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
   .iphone-mockup {
     max-width: 100%;
     width: 100%;
