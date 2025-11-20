@@ -159,6 +159,10 @@
     justify-content: center;
   }
   
+  .hero .hero-actions {
+    justify-content: center;
+  }
+  
   .hero-micro-copy {
     margin-top: 12px;
     font-size: 0.8rem;
