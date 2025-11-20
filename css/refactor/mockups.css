@@ -939,6 +939,7 @@
     padding: var(--space-sm) var(--space-md);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    min-width: 360px; /* Shared min-width for all variants so behavior is consistent */
   }
 
   .mockup-table__cell {
@@ -962,7 +963,6 @@
 
   .mockup--timesheet .mockup-table__row {
     grid-template-columns: 100px 75px 55px 55px 75px;
-    min-width: 360px;
     gap: 6px;
     padding: var(--space-sm) 0;
   }
@@ -975,7 +975,6 @@
 
   .mockup--receipt .mockup-table__row {
     grid-template-columns: 115px 60px 70px 80px 95px;
-    min-width: 420px;
     gap: 6px;
     padding: var(--space-sm) 0;
   }
@@ -990,14 +989,12 @@
 
   .mockup--salary .mockup-table__row {
     grid-template-columns: 110px 60px 90px;
-    min-width: 260px;
     gap: 8px;
     padding: var(--space-sm) 0;
   }
 
   .mockup--maintenance .mockup-table__row {
     grid-template-columns: 130px 90px 70px 80px;
-    min-width: 370px;
     gap: 8px;
     padding: var(--space-sm) 0;
   }

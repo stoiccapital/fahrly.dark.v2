@@ -1,0 +1,702 @@
+/* ===== Mobile Optimizations (< 768px) ===== */
+/* All changes are scoped to mobile to preserve desktop pixel-perfect design */
+
+@media (max-width: 768px) {
+  
+  /* ===== STEP 1: Global Mobile Spacing System ===== */
+  
+  /* Reduce section padding */
+  .section,
+  .section-alt,
+  .section-bg--hero,
+  .section-bg--muted {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .section--hero,
+  .hero {
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+  
+  /* Container padding */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  /* Tighten heading and paragraph spacing */
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.4rem);
+    margin-bottom: 0.75em;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    margin-bottom: 0.65em;
+  }
+  
+  h3 {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    margin-bottom: 0.6em;
+  }
+  
+  p {
+    margin-bottom: 0.85em;
+  }
+  
+  /* Section intro spacing */
+  .section-intro,
+  .pricing-intro,
+  .testimonial-intro,
+  .security-intro,
+  .faq-intro,
+  .features-intro {
+    margin-bottom: 40px;
+  }
+  
+  .section-intro .eyebrow,
+  .pricing-intro .eyebrow,
+  .testimonial-intro .eyebrow,
+  .security-intro .eyebrow,
+  .faq-intro .eyebrow,
+  .features-intro .eyebrow {
+    margin-bottom: 8px;
+  }
+  
+  .section-intro h2,
+  .pricing-intro h2,
+  .testimonial-intro h2,
+  .security-intro h2,
+  .faq-intro h2,
+  .features-intro h2 {
+    margin-bottom: 12px;
+  }
+  
+  .features-intro__text {
+    margin-top: 12px;
+  }
+  
+  /* ===== STEP 2: Hero Section Mobile Optimization ===== */
+  
+  /* Stack hero content vertically */
+  .hero .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .hero-content {
+    text-align: center;
+    order: 1;
+  }
+  
+  .hero-visual {
+    order: 2;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  
+  /* Shrink hero mockup */
+  .hero-visual__main-card {
+    max-width: 100%;
+    padding: 12px 14px;
+  }
+  
+  .hero-dashboard {
+    gap: 12px;
+  }
+  
+  .hero-stats {
+    gap: 8px;
+  }
+  
+  .hero-stat-card {
+    padding: 12px;
+    gap: 6px;
+  }
+  
+  .hero-stat-card__label {
+    font-size: 10px;
+  }
+  
+  .hero-stat-card__value {
+    font-size: 1.1rem;
+  }
+  
+  .hero-table-wrapper {
+    margin-top: 8px;
+  }
+  
+  .hero-table__row {
+    padding: 8px 0;
+    gap: 8px;
+  }
+  
+  .hero-table__cell {
+    font-size: 11px;
+  }
+  
+  .hero-table__row--header .hero-table__cell {
+    font-size: 10px;
+  }
+  
+  /* Tighten hero height */
+  .hero-eyebrow {
+    margin-bottom: 12px;
+  }
+  
+  .hero-content h1 {
+    margin-bottom: 12px;
+  }
+  
+  .hero-content p {
+    margin-bottom: 0;
+  }
+  
+  .hero-actions {
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  .hero-micro-copy {
+    margin-top: 12px;
+    font-size: 0.8rem;
+  }
+  
+  /* ===== STEP 3: Feature Mockups Mobile Optimization ===== */
+  
+  /* Stack feature rows - ensure proper vertical stacking */
+  .feature-row {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    gap: 64px !important;
+    margin-bottom: 64px;
+    min-height: auto !important;
+    align-items: stretch;
+    position: relative;
+    overflow: visible;
+  }
+  
+  .feature-row__content {
+    position: static !important;
+    top: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    order: 1;
+    gap: 10px;
+    z-index: 1;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 48px !important;
+    margin-top: 0 !important;
+    height: auto !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+  
+  .feature-row__media {
+    order: 2;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    z-index: 0;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    overflow: visible !important;
+    clear: both;
+  }
+  
+  /* Limit mockup size while preserving aspect ratio */
+  .feature-media-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    /* Maintain 16:10 aspect ratio */
+    aspect-ratio: 16 / 10;
+    padding: 12px;
+    position: relative;
+    box-sizing: border-box;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+  
+  .iphone-mockup {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* Let aspect ratio determine height */
+  }
+  
+  /* Ensure mockups don't overflow containers */
+  .mockup__monitor,
+  .mockup__screen {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .iphone-mockup__screen {
+    /* Maintain iPhone 16 aspect ratio: 71.6 / 147.6 */
+    aspect-ratio: 71.6 / 147.6;
+    padding-top: 36px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .mockup__monitor {
+    /* Maintain aspect ratio, limit width instead */
+    max-width: 100%;
+    padding: 10px;
+  }
+  
+  .mockup__content {
+    padding: 12px;
+  }
+  
+  .mockup-table {
+    padding: 8px 12px;
+  }
+  
+  .mockup-table__row {
+    padding: 8px 0;
+    gap: 10px;
+  }
+  
+  .mockup-table__cell {
+    font-size: 12px;
+  }
+  
+  .mockup-table__row--header .mockup-table__cell {
+    font-size: 10px;
+  }
+  
+  /* Tighten feature content spacing - ensure proper margins */
+  .feature-row__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+  }
+  
+  .feature-row__subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    margin-top: 0;
+  }
+  
+  .feature-row__outcome {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+  
+  .feature-row__link {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  /* Feature stack gap - clean spacing */
+  .feature-stack {
+    gap: 3rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Features section padding */
+  #features.section,
+  #features.section-alt {
+    padding: 48px 0 64px;
+  }
+  
+  .features-intro {
+    margin-bottom: 40px;
+    padding-bottom: 0;
+  }
+  
+  /* Ensure no overlap in feature rows */
+  .feature-row:not(:last-child) {
+    margin-bottom: 64px;
+    padding-bottom: 0;
+  }
+  
+  .feature-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* ===== STEP 4: Testimonials, Pricing, Security Mobile Tweaks ===== */
+  
+  /* A) Pricing */
+  .pricing {
+    padding: 48px 0;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .pricing-card {
+    padding: 18px 16px 20px;
+  }
+  
+  .pricing-card__title {
+    font-size: 0.95rem;
+  }
+  
+  .pricing-card__price {
+    font-size: 1.5rem;
+  }
+  
+  .pricing-card__features li {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+  
+  .pricing-note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+  }
+  
+  /* B) Testimonials */
+  .testimonials {
+    padding: 48px 0;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .testimonial-card {
+    padding: 16px 16px 14px;
+    gap: 10px;
+  }
+  
+  .testimonial-card__accent {
+    width: 32px;
+    height: 2px;
+    margin-bottom: 2px;
+  }
+  
+  .testimonial-card__quote {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  
+  .testimonial-card__metric {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+  
+  .testimonial-card__footer {
+    margin-top: 8px;
+  }
+  
+  .testimonial-card__avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  
+  .testimonial-avatar-initials {
+    font-size: 0.8rem;
+  }
+  
+  .testimonial-card__name,
+  .testimonial-card__role {
+    font-size: 0.85rem;
+  }
+  
+  .testimonial-google-rating {
+    margin: 20px 0 24px 0;
+  }
+  
+  /* C) Security / FAQ */
+  .security {
+    padding: 48px 0;
+  }
+  
+  .security-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .security-card {
+    padding: 16px 14px 18px;
+    gap: 6px;
+  }
+  
+  .security-card__icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .security-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .security-card__title {
+    font-size: 0.95rem;
+  }
+  
+  .security-card__text {
+    font-size: 0.85rem;
+  }
+  
+  .faq {
+    padding: 48px 0;
+  }
+  
+  .faq-list {
+    margin-top: 20px;
+    gap: 8px;
+  }
+  
+  .faq-question {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .faq-answer {
+    padding: 0 14px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .faq-item.active .faq-answer {
+    padding: 0 14px 12px;
+  }
+  
+  /* ===== STEP 5: Ensure CTAs are Frequent and Visible ===== */
+  
+  /* Hero actions */
+  .hero-actions {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  
+  /* Intro section CTA */
+  #intro .hero-actions {
+    margin-top: 20px;
+  }
+  
+  /* Features intro CTA */
+  .features-intro .hero-actions {
+    margin-top: 20px;
+  }
+  
+  /* Final CTA section */
+  #final-cta {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  
+  #final-cta .features-intro {
+    margin-bottom: 0;
+  }
+  
+  #final-cta .features-intro p {
+    margin-bottom: 20px;
+  }
+  
+  #final-cta .hero-actions {
+    margin-top: 20px;
+  }
+  
+  /* Button hit areas */
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  /* Reduce gaps before CTAs */
+  .section-intro__text + .hero-actions,
+  .features-intro__text + .hero-actions {
+    margin-top: 20px;
+  }
+  
+  /* Ensure CTAs appear more frequently during scroll */
+  .section-alt + .section .features-intro {
+    margin-bottom: 32px;
+  }
+  
+  /* ===== Additional Mobile Refinements ===== */
+  
+  /* Trusted by section */
+  .trusted-by {
+    padding: 32px 0;
+  }
+  
+  .trusted-by-label {
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+  }
+  
+  .trusted-note {
+    margin-top: 12px;
+    font-size: 0.85rem;
+  }
+  
+  /* Footer */
+  .site-footer {
+    margin-top: 48px;
+    padding: 32px 16px 24px;
+  }
+  
+  .site-footer__inner {
+    gap: 20px;
+  }
+  
+  /* Grid utilities */
+  .grid-2,
+  .grid-3 {
+    gap: 20px;
+  }
+  
+  /* Layout split */
+  .layout-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  /* Media frame adjustments */
+  .media-frame {
+    padding: 12px;
+  }
+  
+  /* Ensure no horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  * {
+    max-width: 100%;
+  }
+  
+  /* Mockup-specific adjustments */
+  .mockup--esign .esign-card {
+    max-width: 100%;
+  }
+  
+  .mockup--esign .esign-doc__body {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .mockup--esign .esign-doc__header {
+    padding: 12px 16px;
+  }
+  
+  .mockup--esign .esign-doc__signature {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  /* Timesheet, receipt, salary, maintenance cards */
+  .timesheet-card__date,
+  .receipt-card__date,
+  .salary-card__date,
+  .maintenance-card__date {
+    padding: 12px 14px;
+  }
+  
+  .timesheet-card__entries {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  
+  .timesheet-row {
+    padding: 10px 0;
+    gap: 12px;
+  }
+  
+  .timesheet-row__label,
+  .timesheet-row__time {
+    font-size: 12px;
+  }
+  
+  .timesheet-card__summary {
+    padding: 12px 14px;
+  }
+  
+  .timesheet-card__summary-label {
+    font-size: 12px;
+  }
+  
+  .timesheet-card__summary-value {
+    font-size: 1.1rem;
+  }
+  
+  /* FahrlyGo app adjustments - tighter for shorter phone */
+  .fahrlygo-app__header {
+    padding: 10px 14px 8px;
+  }
+  
+  .fahrlygo-app__title {
+    font-size: 16px;
+  }
+  
+  .fahrlygo-app__search {
+    padding: 8px 14px;
+  }
+  
+  .fahrlygo-app__search-bar {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .fahrlygo-app__trips {
+    padding: 4px 14px 50px;
+    gap: 8px;
+  }
+  
+  .fahrlygo-trip {
+    padding: 10px 12px;
+  }
+  
+  .fahrlygo-trip__street {
+    font-size: 12px;
+  }
+  
+  .fahrlygo-trip__city {
+    font-size: 10px;
+  }
+  
+  .fahrlygo-trip__price {
+    font-size: 14px;
+  }
+  
+  /* Data card adjustments */
+  .data-card__header {
+    padding: 12px 16px;
+  }
+  
+  .data-card__body {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+  
+}
+

@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/refactor/components.css">
   <link rel="stylesheet" href="css/refactor/sections.css">
   <link rel="stylesheet" href="css/refactor/mockups.css">
+  <link rel="stylesheet" href="css/refactor/responsive.css">
   <link rel="stylesheet" href="css/overrides.css">
   
   <!-- JavaScript -->
@@ -182,156 +183,131 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="mockup mockup--dispatch">
-                <div class="mockup__monitor">
-                  <div class="mockup__screen">
-                    <div class="mockup__header">
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
+              <div class="iphone-mockup">
+                <div class="iphone-mockup__notch"></div>
+                <div class="iphone-mockup__screen">
+                  <div class="fahrlygo-app">
+                    <div class="fahrlygo-app__header">
+                      <h2 class="fahrlygo-app__title">Alle Firmenfahrten</h2>
                     </div>
-                    <div class="mockup__content">
-                      <div class="mockup-table">
-                        <div class="mockup-table__row mockup-table__row--header">
-                          <div class="mockup-table__cell mockup-table__cell--driver">Fahrer</div>
-                          <div class="mockup-table__cell mockup-table__cell--time">Zeit</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">Status</div>
-                        </div>
-                        <div class="mockup-table__row">
-                          <div class="mockup-table__cell mockup-table__cell--driver">
-                            <span class="dispatch-mockup__driver-name">Ibrahim</span>
-                          </div>
-                          <div class="mockup-table__cell mockup-table__cell--time">08:00 - 12:30</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">
-                            <div class="dispatch-mockup__bar dispatch-mockup__bar--blue"></div>
+                    <div class="fahrlygo-app__search">
+                      <div class="fahrlygo-app__search-bar">
+                        <span class="fahrlygo-app__search-icon">🔍</span>
+                        <span class="fahrlygo-app__search-text">Adresse, Fahrer, Kunde suchen</span>
                           </div>
                         </div>
-                        <div class="mockup-table__row">
-                          <div class="mockup-table__cell mockup-table__cell--driver">
-                            <span class="dispatch-mockup__driver-name">Ahmed</span>
+                    <div class="fahrlygo-app__trips">
+                      <div class="fahrlygo-trip">
+                        <div class="fahrlygo-trip__route">
+                          <div class="fahrlygo-trip__from">
+                            <div class="fahrlygo-trip__location-dot"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Frankfurt Airport Center</div>
+                              <div class="fahrlygo-trip__city">Frankfurt am Main</div>
                           </div>
-                          <div class="mockup-table__cell mockup-table__cell--time">09:15 - 14:45</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">
-                            <div class="dispatch-mockup__bar dispatch-mockup__bar--green"></div>
                           </div>
-                        </div>
-                        <div class="mockup-table__row">
-                          <div class="mockup-table__cell mockup-table__cell--driver">
-                            <span class="dispatch-mockup__driver-name">Mohammed</span>
+                          <div class="fahrlygo-trip__line"></div>
+                          <div class="fahrlygo-trip__to">
+                            <div class="fahrlygo-trip__location-dot fahrlygo-trip__location-dot--destination"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Neuendorfer Str. 3</div>
+                              <div class="fahrlygo-trip__city">Koblenz-Lützel</div>
                           </div>
-                          <div class="mockup-table__cell mockup-table__cell--time">10:30 - 16:00</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">
-                            <div class="dispatch-mockup__bar dispatch-mockup__bar--orange"></div>
-                          </div>
-                        </div>
-                        <div class="mockup-table__row">
-                          <div class="mockup-table__cell mockup-table__cell--driver">
-                            <span class="dispatch-mockup__driver-name">Hassan</span>
-                          </div>
-                          <div class="mockup-table__cell mockup-table__cell--time">11:00 - 17:30</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">
-                            <div class="dispatch-mockup__bar dispatch-mockup__bar--blue"></div>
                           </div>
                         </div>
-                        <div class="mockup-table__row">
-                          <div class="mockup-table__cell mockup-table__cell--driver">
-                            <span class="dispatch-mockup__driver-name">Ayman</span>
+                        <div class="fahrlygo-trip__price">187 €</div>
+                      </div>
+                      <div class="fahrlygo-trip">
+                        <div class="fahrlygo-trip__route">
+                          <div class="fahrlygo-trip__from">
+                            <div class="fahrlygo-trip__location-dot"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Neustraße 2</div>
+                              <div class="fahrlygo-trip__city">Koblenz</div>
+                            </div>
                           </div>
-                          <div class="mockup-table__cell mockup-table__cell--time">13:00 - 18:00</div>
-                          <div class="mockup-table__cell mockup-table__cell--status">
-                            <div class="dispatch-mockup__bar dispatch-mockup__bar--green"></div>
+                          <div class="fahrlygo-trip__line"></div>
+                          <div class="fahrlygo-trip__to">
+                            <div class="fahrlygo-trip__location-dot fahrlygo-trip__location-dot--destination"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Köln Bonn Airport</div>
+                              <div class="fahrlygo-trip__city">Köln</div>
+                            </div>
+                          </div>
+                            </div>
+                        <div class="fahrlygo-trip__price">92 €</div>
+                          </div>
+                      <div class="fahrlygo-trip">
+                        <div class="fahrlygo-trip__route">
+                          <div class="fahrlygo-trip__from">
+                            <div class="fahrlygo-trip__location-dot"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Köln Bonn Airport</div>
+                              <div class="fahrlygo-trip__city">Köln</div>
+                            </div>
+                          </div>
+                          <div class="fahrlygo-trip__line"></div>
+                          <div class="fahrlygo-trip__to">
+                            <div class="fahrlygo-trip__location-dot fahrlygo-trip__location-dot--destination"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Deutsche Bank SB-Stelle</div>
+                              <div class="fahrlygo-trip__city">Düsseldorf</div>
+                            </div>
                           </div>
                         </div>
+                        <div class="fahrlygo-trip__price">245 €</div>
+                      </div>
+                      <div class="fahrlygo-trip">
+                        <div class="fahrlygo-trip__route">
+                          <div class="fahrlygo-trip__from">
+                            <div class="fahrlygo-trip__location-dot"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Deutsche Bank SB-Stelle</div>
+                              <div class="fahrlygo-trip__city">Düsseldorf</div>
+                            </div>
+                          </div>
+                          <div class="fahrlygo-trip__line"></div>
+                          <div class="fahrlygo-trip__to">
+                            <div class="fahrlygo-trip__location-dot fahrlygo-trip__location-dot--destination"></div>
+                            <div class="fahrlygo-trip__address">
+                              <div class="fahrlygo-trip__street">Straßburger Str.</div>
+                              <div class="fahrlygo-trip__city">Wuppertal-Elberfeld</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fahrlygo-trip__price">156 €</div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Feature 2 -->
-        <article class="feature-row">
-          <div class="feature-row__content">
-            <h3 class="feature-row__title">Digitale Arbeitszeiterfassung, die nichts vergisst</h3>
-            <p class="feature-row__subtitle">
-              Start, Pause, Ende – alles wird automatisch protokolliert. Einheitlich und transparent.
-            </p>
-            <p class="feature-row__outcome">
-              Ergebnis: Spart jede Woche Stunden und hält Ihr Unternehmen jederzeit compliant.
-            </p>
-            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
-          </div>
-          <div class="feature-row__media">
-            <div class="feature-media-card">
-              <div class="mockup mockup--timesheet">
-                <div class="mockup__monitor">
-                  <div class="mockup__screen">
-                    <div class="mockup__header">
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
-                    </div>
-                    <div class="mockup__content">
-                      <div class="timesheet-card">
-                        <div class="timesheet-card__date">
-                          <span class="timesheet-card__day">Fahrer-Übersicht</span>
-                        </div>
-                        <div class="mockup-table">
-                          <div class="mockup-table__row mockup-table__row--header">
-                            <div class="mockup-table__cell mockup-table__cell--name">Name</div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">Umsatz</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">Stunden</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">Fahrten</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">Fahrten/Stunde</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--name">
-                              <span class="timesheet-table__driver-name">Ibrahim</span>
-                            </div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.450 €</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">32</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">120</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">3,75</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--name">
-                              <span class="timesheet-table__driver-name">Ahmed</span>
-                            </div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.780 €</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">38</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">145</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">3,82</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--name">
-                              <span class="timesheet-table__driver-name">Mohammed</span>
-                            </div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.120 €</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">28</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">110</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">3,93</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--name">
-                              <span class="timesheet-table__driver-name">Hassan</span>
-                            </div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.650 €</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">35</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">140</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">4,00</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--name">
-                              <span class="timesheet-table__driver-name">Ayman</span>
-                            </div>
-                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.310 €</div>
-                            <div class="mockup-table__cell mockup-table__cell--stunden">30</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrten">125</div>
-                            <div class="mockup-table__cell mockup-table__cell--rate">4,17</div>
-                          </div>
-                        </div>
+                    <div class="fahrlygo-app__navbar">
+                      <div class="fahrlygo-navbar__item">
+                        <svg class="fahrlygo-navbar__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="fahrlygo-navbar__item">
+                        <svg class="fahrlygo-navbar__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="fahrlygo-navbar__item fahrlygo-navbar__item--active">
+                        <svg class="fahrlygo-navbar__icon fahrlygo-navbar__icon--car" width="28" height="28" viewBox="0 0 324.018 324.017" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M317.833,197.111c3.346-11.148,2.455-20.541-2.65-27.945c-9.715-14.064-31.308-15.864-35.43-16.076l-8.077-4.352 l-0.528-0.217c-8.969-2.561-42.745-3.591-47.805-3.733c-7.979-3.936-14.607-7.62-20.475-10.879 c-20.536-11.413-34.107-18.958-72.959-18.958c-47.049,0-85.447,20.395-90.597,23.25c-2.812,0.212-5.297,0.404-7.646,0.59 l-6.455-8.733l7.34,0.774c2.91,0.306,4.267-1.243,3.031-3.459c-1.24-2.216-4.603-4.262-7.519-4.57l-23.951-2.524 c-2.91-0.305-4.267,1.243-3.026,3.459c1.24,2.216,4.603,4.262,7.519,4.57l3.679,0.386l8.166,11.05 c-13.823,1.315-13.823,2.139-13.823,4.371c0,18.331-2.343,22.556-2.832,23.369L0,164.443v19.019l2.248,2.89 c-0.088,2.775,0.823,5.323,2.674,7.431c5.981,6.804,19.713,7.001,21.256,7.001c4.634,0,14.211-2.366,20.78-4.153 c-0.456-0.781-0.927-1.553-1.3-2.392c-0.36-0.809-0.603-1.668-0.885-2.517c-0.811-2.485-1.362-5.096-1.362-7.845 c0-14.074,11.449-25.516,25.515-25.516s25.52,11.446,25.52,25.521c0,6.068-2.221,11.578-5.773,15.964 c-0.753,0.927-1.527,1.828-2.397,2.641c-1.022,0.958-2.089,1.859-3.254,2.641c29.332,0.109,112.164,0.514,168.708,1.771 c-0.828-0.823-1.533-1.771-2.237-2.703c-0.652-0.854-1.222-1.75-1.761-2.688c-2.164-3.744-3.5-8.025-3.5-12.655 c0-14.069,11.454-25.513,25.518-25.513c14.064,0,25.518,11.449,25.518,25.513c0,5.126-1.553,9.875-4.152,13.878 c-0.605,0.922-1.326,1.755-2.04,2.594c-0.782,0.922-1.616,1.781-2.527,2.584c5.209,0.155,9.699,0.232,13.546,0.232 c19.563,0,23.385-1.688,23.861-5.018C324.114,202.108,324.472,199.602,317.833,197.111z"></path>
+                          <path d="M52.17,195.175c3.638,5.379,9.794,8.922,16.756,8.922c0.228,0,0.44-0.062,0.663-0.073c2.576-0.083,5.043-0.61,7.291-1.574 c1.574-0.678,2.996-1.6,4.332-2.636c4.782-3.702,7.927-9.429,7.927-15.933c0-11.144-9.066-20.216-20.212-20.216 s-20.213,9.072-20.213,20.216c0,2.263,0.461,4.411,1.149,6.446c0.288,0.85,0.616,1.673,1.015,2.471 C51.279,193.606,51.667,194.434,52.17,195.175z"></path>
+                          <path d="M269.755,209.068c2.656,0,5.173-0.549,7.503-1.481c1.589-0.642,3.06-1.491,4.422-2.495 c1.035-0.767,1.988-1.616,2.863-2.559c3.34-3.604,5.432-8.389,5.432-13.681c0-11.144-9.071-20.21-20.215-20.21 s-20.216,9.066-20.216,20.21c0,4.878,1.812,9.3,4.702,12.801c0.818,0.989,1.719,1.89,2.708,2.713 c1.311,1.088,2.729,2.024,4.293,2.755C263.836,208.333,266.704,209.068,269.755,209.068z"></path>
+                        </svg>
+                      </div>
+                      <div class="fahrlygo-navbar__item">
+                        <svg class="fahrlygo-navbar__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="fahrlygo-navbar__item">
+                        <svg class="fahrlygo-navbar__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                       </div>
                     </div>
                   </div>
@@ -473,91 +449,7 @@
           </div>
         </article>
 
-        <!-- Feature 6 -->
-        <article class="feature-row">
-          <div class="feature-row__content">
-            <h3 class="feature-row__title">Wartungserinnerungen auf Basis echter Kilometer</h3>
-            <p class="feature-row__subtitle">
-              Fahrly erinnert automatisch, wenn Fahrzeuge zur Inspektion müssen – basierend auf realen Kilometerständen.
-            </p>
-            <p class="feature-row__outcome">
-              Ergebnis: Weniger Ausfälle, weniger ungeplante Reparaturen, niedrigere Gesamtkosten.
-            </p>
-            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
-          </div>
-          <div class="feature-row__media">
-            <div class="feature-media-card">
-              <div class="mockup mockup--maintenance">
-                <div class="mockup__monitor">
-                  <div class="mockup__screen">
-                    <div class="mockup__header">
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
-                      <span class="mockup__header-dot"></span>
-                    </div>
-                    <div class="mockup__content">
-                      <div class="maintenance-card">
-                        <div class="maintenance-card__date">
-                          <span class="maintenance-card__day">Wartungsübersicht</span>
-                        </div>
-                        <div class="mockup-table">
-                          <div class="mockup-table__row mockup-table__row--header">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Aufgabe</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">Fälligkeitsdatum</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">Kilometer</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">Status</div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Ölwechsel</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">15. Dezember</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.200 km</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">
-                              <span class="maintenance-status maintenance-status--offen">Offen</span>
-                            </div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">TÜV</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">08. Dezember</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.500 km</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">
-                              <span class="maintenance-status maintenance-status--erledigt">Erledigt</span>
-                            </div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Reifenwechsel</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">22. Dezember</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.800 km</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">
-                              <span class="maintenance-status maintenance-status--offen">Offen</span>
-                            </div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Bremse austauschen</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">03. Dezember</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.200 km</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">
-                              <span class="maintenance-status maintenance-status--erledigt">Erledigt</span>
-                            </div>
-                          </div>
-                          <div class="mockup-table__row">
-                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Batteriezustand</div>
-                            <div class="mockup-table__cell mockup-table__cell--datum">18. Dezember</div>
-                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.500 km</div>
-                            <div class="mockup-table__cell mockup-table__cell--status">
-                              <span class="maintenance-status maintenance-status--offen">Offen</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Feature 7 -->
+        <!-- Feature 5: Digitale Belege in Sekunden -->
         <article class="feature-row">
           <div class="feature-row__content">
             <h3 class="feature-row__title">Digitale Belege in Sekunden</h3>
@@ -586,11 +478,11 @@
                         </div>
                         <div class="mockup-table">
                           <div class="mockup-table__row mockup-table__row--header">
-                            <div class="mockup-table__cell mockup-table__cell--datum">Datum</div>
-                            <div class="mockup-table__cell mockup-table__cell--wert">Wert</div>
-                            <div class="mockup-table__cell mockup-table__cell--typ">Typ</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrer">Fahrer</div>
-                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Fahrzeug</div>
+                            <div class="mockup-table__cell">DATUM</div>
+                            <div class="mockup-table__cell">WERT</div>
+                            <div class="mockup-table__cell">TYP</div>
+                            <div class="mockup-table__cell">FAHRER</div>
+                            <div class="mockup-table__cell">FAHRZEUG</div>
                           </div>
                           <div class="mockup-table__row">
                             <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
@@ -636,6 +528,180 @@
                               <span class="receipt-table__driver-name">Ayman</span>
                             </div>
                             <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 6: Wartungserinnerungen auf Basis echter Kilometer -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Wartungserinnerungen auf Basis echter Kilometer</h3>
+            <p class="feature-row__subtitle">
+              Fahrly erinnert automatisch, wenn Fahrzeuge zur Inspektion müssen – basierend auf realen Kilometerständen.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Weniger Ausfälle, weniger ungeplante Reparaturen, niedrigere Gesamtkosten.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <div class="mockup mockup--maintenance">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                    </div>
+                    <div class="mockup__content">
+                      <div class="maintenance-card">
+                        <div class="maintenance-card__date">
+                          <span class="maintenance-card__day">Wartungsübersicht</span>
+                        </div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell">AUFGABE</div>
+                            <div class="mockup-table__cell">FÄLLIGKEITSDATUM</div>
+                            <div class="mockup-table__cell">KILOMETER</div>
+                            <div class="mockup-table__cell">STATUS</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Ölwechsel</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">15. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.200 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
+                              <span class="maintenance-status maintenance-status--offen">OFFEN</span>
+                            </div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">TÜV</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">08. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.500 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
+                              <span class="maintenance-status maintenance-status--erledigt">ERLEDIGT</span>
+                            </div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Reifenwechsel</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">22. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.800 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
+                              <span class="maintenance-status maintenance-status--offen">OFFEN</span>
+                            </div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Bremse austauschen</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">03. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.200 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
+                              <span class="maintenance-status maintenance-status--erledigt">ERLEDIGT</span>
+                            </div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Batteriezustand</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">18. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.500 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
+                              <span class="maintenance-status maintenance-status--offen">OFFEN</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 7: Digitale Arbeitszeiterfassung, die nichts vergisst -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Digitale Arbeitszeiterfassung, die nichts vergisst</h3>
+            <p class="feature-row__subtitle">
+              Start, Pause, Ende – alles wird automatisch protokolliert. Einheitlich und transparent.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Spart jede Woche Stunden und hält Ihr Unternehmen jederzeit compliant.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <div class="mockup mockup--timesheet">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                    </div>
+                    <div class="mockup__content">
+                      <div class="timesheet-card">
+                        <div class="timesheet-card__date">
+                          <span class="timesheet-card__day">Fahrer-Übersicht</span>
+                        </div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell mockup-table__cell--name">NAME</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">UMSATZ</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">STUNDEN</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">FAHRTEN</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">FAHRTEN/STUNDE</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
+                              <span class="timesheet-table__driver-name">Ibrahim</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.450 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">32</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">120</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,75</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
+                              <span class="timesheet-table__driver-name">Ahmed</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.780 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">38</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">145</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,82</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
+                              <span class="timesheet-table__driver-name">Mohammed</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.120 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">28</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">110</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,93</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
+                              <span class="timesheet-table__driver-name">Hassan</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.650 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">35</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">140</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">4,00</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
+                              <span class="timesheet-table__driver-name">Ayman</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.310 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">30</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">125</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">4,17</div>
                           </div>
                         </div>
                       </div>
