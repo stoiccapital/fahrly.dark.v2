@@ -1,0 +1,1016 @@
+  /*
+ * Dashboard Mockups & Feature-Specific UI
+ * Browser mockups, dispatch, timesheet, receipt, salary, maintenance, e-signature
+ */
+
+/* ===== Enhanced Browser Mockup - App Layout ===== */
+.browser-mockup {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 0;
+  box-shadow: var(--shadow-md), var(--shadow-accent);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.browser-mockup:hover {
+  box-shadow: var(--shadow-lg), var(--shadow-accent-lg);
+  transform: translateY(-4px);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.browser-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.browser-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.browser-dot:nth-child(1) {
+  background: #ff5f57;
+}
+
+.browser-dot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.browser-dot:nth-child(3) {
+  background: #28ca42;
+}
+
+.browser-url {
+  flex: 1;
+  height: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin: 0 var(--space-md);
+}
+
+.browser-content {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: 400px;
+}
+
+.app-sidebar {
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--border-subtle);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sidebar-item {
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.sidebar-item.active {
+  background: var(--accent-soft);
+}
+
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+
+.app-main {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  background: var(--bg-surface);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.app-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.app-header-line {
+  height: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.app-header-line:nth-child(1) {
+  width: 120px;
+}
+
+.app-header-line:nth-child(2) {
+  width: 80px;
+}
+
+.app-header-right {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
+.app-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.app-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.app-card-header {
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  width: 60%;
+}
+
+.app-card-line {
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.app-card-line:nth-child(2) {
+  width: 90%;
+}
+
+.app-card-line:nth-child(3) {
+  width: 75%;
+}
+
+.app-card-line:nth-child(4) {
+  width: 85%;
+}
+
+@media (max-width: 768px) {
+  .browser-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-sidebar {
+    display: none;
+  }
+  
+  .app-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== Generic App Mockup System ===== */
+.mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.mockup__monitor {
+  width: 100%;
+  max-width: 100%;
+  background: #1a1a1f;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-lg);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.05),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.mockup__screen {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--space-lg) var(--space-lg);
+  background: rgba(15, 23, 42, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup__header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.mockup__header-dot:nth-child(1) { background: #ff5f57; }
+.mockup__header-dot:nth-child(2) { background: #ffbd2e; }
+.mockup__header-dot:nth-child(3) { background: #28ca42; }
+
+.mockup__content {
+  padding: var(--space-xl);
+}
+
+.mockup-table {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.mockup-table__row {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+  padding: var(--space-md) 0;
+}
+
+.mockup-table__row--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.mockup-table__row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-table__cell {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.mockup-table__row--header .mockup-table__cell {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ===== Dispatch Mockup Variant ===== */
+.mockup--dispatch .mockup-table {
+  padding: 0;
+  gap: 12px;
+}
+
+.mockup--dispatch .mockup-table__row {
+  grid-template-columns: 1.5fr 1.2fr 1fr;
+}
+
+.mockup--dispatch .mockup-table__cell--driver {
+  font-weight: 500;
+}
+
+.mockup--dispatch .mockup-table__cell--time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.mockup--dispatch .mockup-table__cell--status {
+  justify-content: flex-start;
+}
+
+/* Dispatch mockup helpers */
+.dispatch-mockup__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.dispatch-mockup__bar {
+  height: 8px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 80px;
+}
+
+.dispatch-mockup__bar--blue {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.dispatch-mockup__bar--green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.dispatch-mockup__bar--orange {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+
+/* ===== Data Card Base ===== */
+.data-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.data-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.data-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) var(--space-xl);
+  gap: var(--space-sm);
+}
+
+
+/* ===== Timesheet Mockup Variant ===== */
+/* .timesheet-card extends .data-card */
+
+.timesheet-card__date,
+.receipt-card__date,
+.salary-card__date,
+.maintenance-card__date {
+  /* Extends .data-card__header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.timesheet-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timesheet-card__time-range {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.timesheet-card__entries {
+  padding: var(--space-lg) var(--space-xl);
+  gap: var(--space-md);
+}
+
+.timesheet-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: var(--space-md) 0;
+}
+
+.timesheet-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timesheet-pill {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timesheet-pill--blue {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.timesheet-pill--orange {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.timesheet-pill--purple {
+  background: linear-gradient(135deg, var(--accent-secondary), #a78bfa);
+}
+
+.timesheet-row__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.timesheet-row__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timesheet-row__time {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.timesheet-card__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-xl);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(var(--accent-secondary-rgb), 0.08));
+  border-top: 1px solid #e9ecef;
+}
+
+.timesheet-card__summary-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timesheet-card__summary-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3b82f6;
+  letter-spacing: -0.02em;
+}
+
+.mockup--timesheet .mockup-table__row {
+  grid-template-columns: 1.5fr 1fr 0.8fr 0.8fr 1fr;
+}
+
+.mockup--timesheet .mockup-table__cell--name {
+  font-weight: 500;
+}
+
+.mockup--timesheet .mockup-table__cell--umsatz {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mockup--timesheet .mockup-table__cell--stunden,
+.mockup--timesheet .mockup-table__cell--fahrten,
+.mockup--timesheet .mockup-table__cell--rate {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+/* Shared muted cell style for variants */
+.mockup-table__cell--muted {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+/* Shared driver name style */
+.timesheet-table__driver-name,
+.receipt-table__driver-name,
+.salary-table__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+
+
+/* ===== Receipt Mockup Variant ===== */
+/* .receipt-card extends .data-card */
+
+
+.receipt-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mockup--receipt .mockup-table__row {
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1.5fr;
+}
+
+.mockup--receipt .mockup-table__cell--datum,
+.mockup--receipt .mockup-table__cell--typ,
+.mockup--receipt .mockup-table__cell--fahrzeug {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.mockup--receipt .mockup-table__cell--wert {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mockup--receipt .mockup-table__cell--fahrer {
+  font-weight: 500;
+}
+
+
+
+/* ===== E-Signature Mockup Variant ===== */
+.mockup--esign .mockup__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.esign-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.esign-doc {
+  display: flex;
+  flex-direction: column;
+}
+
+.esign-doc__header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(var(--accent-secondary-rgb), 0.06));
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.esign-doc__header-line {
+  height: 4px;
+  width: 60%;
+  background: linear-gradient(90deg, #3b82f6, #7b61ff);
+  border-radius: 2px;
+}
+
+.esign-doc__body {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.esign-doc__paragraph {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+.esign-doc__paragraph:nth-child(1) {
+  width: 95%;
+}
+
+.esign-doc__paragraph:nth-child(2) {
+  width: 88%;
+}
+
+.esign-doc__paragraph:nth-child(3) {
+  width: 92%;
+}
+
+.esign-doc__paragraph:nth-child(4) {
+  width: 75%;
+}
+
+.esign-doc__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.esign-doc__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.esign-doc__spacer {
+  height: 12px;
+}
+
+.esign-doc__separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 24px;
+}
+
+.esign-doc__signature {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.esign-signature-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.esign-signature-line__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+.esign-signature-line__line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.esign-signature-line__button {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3b82f6, #7b61ff);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+.esign-signature-stroke {
+  height: 60px;
+  width: 100%;
+  position: relative;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.esign-signature-stroke--signed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 32px;
+  background: transparent;
+  border: 2.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 16px 12px 20px 14px / 14px 16px 18px 12px;
+  transform: rotate(-1.5deg);
+  opacity: 0.8;
+}
+
+.esign-signature-stroke--signed::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  width: 140px;
+  height: 24px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px 8px 16px 10px / 10px 12px 14px 8px;
+  transform: rotate(1deg);
+  opacity: 0.6;
+}
+
+.esign-signature-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ===== Salary Mockup Variant ===== */
+/* .salary-card extends .data-card */
+
+
+.salary-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mockup--salary .mockup-table__row {
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+}
+
+.mockup--salary .mockup-table__cell--name {
+  font-weight: 500;
+}
+
+.mockup--salary .mockup-table__cell--percent {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.mockup--salary .mockup-table__cell--gehalt {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.salary-table__driver-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+
+/* ===== Maintenance Mockup Variant ===== */
+/* .maintenance-card extends .data-card */
+
+
+.maintenance-card__day {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mockup--maintenance .mockup-table__row {
+  grid-template-columns: 1.8fr 1.2fr 1fr 1fr;
+}
+
+.mockup--maintenance .mockup-table__cell--aufgabe {
+  font-weight: 500;
+}
+
+.mockup--maintenance .mockup-table__cell--datum,
+.mockup--maintenance .mockup-table__cell--kilometer {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.mockup--maintenance .mockup-table__cell--status {
+  justify-content: flex-start;
+}
+
+.maintenance-status {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.maintenance-status--offen {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.maintenance-status--erledigt {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+
+/* ===== Shared Responsive Rules for All Mockups ===== */
+@media (max-width: 768px) {
+  .mockup {
+    padding: var(--space-sm);
+  }
+
+  .mockup__monitor {
+    padding: var(--space-sm);
+    border-radius: 18px;
+  }
+
+  .mockup__screen {
+    border-radius: 14px;
+  }
+
+  .mockup__header {
+    padding: var(--space-sm) var(--space-md);
+    min-height: 40px;
+  }
+
+  .mockup__content {
+    padding: var(--space-md);
+  }
+
+  .mockup-table {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .mockup-table__cell {
+    font-size: 12px;
+  }
+
+  .mockup-table__row--header .mockup-table__cell {
+    font-size: 9px;
+  }
+
+  /* Variant-specific overrides */
+  .mockup--dispatch .mockup-table__row {
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 10px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--dispatch .mockup-table__cell--time {
+    font-size: 11px;
+  }
+
+  .mockup--dispatch .dispatch-mockup__bar {
+    max-width: 50px;
+    height: 5px;
+  }
+
+  .mockup--timesheet .mockup-table__row {
+    grid-template-columns: 1.2fr 1fr 0.7fr 0.7fr 0.9fr;
+    gap: 10px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--timesheet .mockup-table__cell--stunden,
+  .mockup--timesheet .mockup-table__cell--fahrten,
+  .mockup--timesheet .mockup-table__cell--rate {
+    font-size: 11px;
+  }
+
+  .mockup--receipt .mockup-table__row {
+    grid-template-columns: 1.2fr 0.9fr 0.9fr 1fr 1.2fr;
+    gap: 10px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--receipt .mockup-table__cell--datum,
+  .mockup--receipt .mockup-table__cell--typ,
+  .mockup--receipt .mockup-table__cell--fahrzeug,
+  .mockup--maintenance .mockup-table__cell--datum,
+  .mockup--maintenance .mockup-table__cell--kilometer {
+    font-size: 11px;
+  }
+
+  .mockup--salary .mockup-table__row {
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 10px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--maintenance .mockup-table__row {
+    grid-template-columns: 1.5fr 1fr 0.9fr 0.9fr;
+    gap: 10px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--maintenance .mockup-table__cell--datum,
+  .mockup--maintenance .mockup-table__cell--kilometer {
+    font-size: 11px;
+  }
+
+  .maintenance-status {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mockup {
+    padding: 6px;
+  }
+
+  .mockup__monitor {
+    padding: var(--space-sm);
+    border-radius: var(--radius-lg);
+  }
+
+  .mockup__screen {
+    border-radius: var(--radius-md);
+  }
+
+  .mockup__header {
+    padding: var(--space-sm) var(--space-md);
+    min-height: 36px;
+  }
+
+  .mockup__content {
+    padding: var(--space-sm);
+  }
+
+  .mockup-table {
+    padding: var(--space-sm) var(--space-md);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mockup-table__cell {
+    font-size: 11px;
+  }
+
+  .mockup-table__row--header .mockup-table__cell {
+    font-size: 8px;
+  }
+
+  /* Variant-specific mobile overrides */
+  .mockup--dispatch .mockup-table__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--dispatch .mockup-table__cell--status {
+    grid-column: 1;
+  }
+
+  .mockup--timesheet .mockup-table__row {
+    grid-template-columns: 100px 75px 55px 55px 75px;
+    min-width: 360px;
+    gap: 6px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--timesheet .mockup-table__cell--stunden,
+  .mockup--timesheet .mockup-table__cell--fahrten,
+  .mockup--timesheet .mockup-table__cell--rate {
+    font-size: 10px;
+  }
+
+  .mockup--receipt .mockup-table__row {
+    grid-template-columns: 115px 60px 70px 80px 95px;
+    min-width: 420px;
+    gap: 6px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--receipt .mockup-table__cell--datum,
+  .mockup--receipt .mockup-table__cell--typ,
+  .mockup--receipt .mockup-table__cell--fahrzeug,
+  .mockup--maintenance .mockup-table__cell--datum,
+  .mockup--maintenance .mockup-table__cell--kilometer {
+    font-size: 10px;
+  }
+
+  .mockup--salary .mockup-table__row {
+    grid-template-columns: 110px 60px 90px;
+    min-width: 260px;
+    gap: 8px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--maintenance .mockup-table__row {
+    grid-template-columns: 130px 90px 70px 80px;
+    min-width: 370px;
+    gap: 8px;
+    padding: var(--space-sm) 0;
+  }
+
+  .mockup--maintenance .mockup-table__cell--datum,
+  .mockup--maintenance .mockup-table__cell--kilometer {
+    font-size: 10px;
+  }
+
+  .maintenance-status {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+}
+
+  

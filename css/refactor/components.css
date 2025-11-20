@@ -1,0 +1,522 @@
+/*
+ * Reusable UI Components
+ * Buttons, Cards, Utilities, Generic Components
+ */
+
+/* ===== Signature Motif - Road/Lane Stripe ===== */
+.signature-stripe {
+  position: relative;
+  display: inline-block;
+  padding-left: 32px;
+}
+
+.signature-stripe::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--grad-accent);
+}
+
+.signature-stripe--vertical {
+  padding-left: 0;
+  padding-top: 24px;
+}
+
+.signature-stripe--vertical::before {
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background: var(--grad-accent-vertical);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transform: none;
+  transition:
+    transform var(--motion-fast) var(--ease-out-soft),
+    box-shadow var(--motion-fast) var(--ease-out-soft),
+    background var(--motion-fast) var(--ease-out-soft),
+    color var(--motion-fast) var(--ease-out-soft);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  color: white;
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(1);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-outline:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn-login {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+}
+
+.btn-login:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* ===== Unified Card System ===== */
+.card,
+.feature-card,
+.pricing-card,
+.testimonial-card,
+.security-card,
+.faq-item,
+.timesheet-card,
+.receipt-card,
+.salary-card,
+.maintenance-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transform: none;
+  transition:
+    transform var(--motion-normal) var(--ease-out-soft),
+    box-shadow var(--motion-normal) var(--ease-out-soft),
+    border-color var(--motion-normal) var(--ease-out-soft),
+    background var(--motion-normal) var(--ease-out-soft);
+}
+
+/* Card modifier: hover lift effect */
+.card--hover-lift:hover,
+.feature-card:hover,
+.pricing-card:hover,
+.testimonial-card:hover,
+.security-card:hover,
+.timesheet-card:hover,
+.receipt-card:hover,
+.salary-card:hover,
+.maintenance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--accent-primary-rgb), 0.7);
+}
+
+/* Card modifier: highlight state */
+.card--highlight {
+  border-color: rgba(var(--accent-primary-rgb), 0.9);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.card--highlight:hover {
+  border-color: rgba(var(--accent-primary-rgb), 1);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+/* ===== Feature Card ===== */
+.feature-card {
+  /* Extends .card base */
+  padding: var(--space-lg) var(--space-lg) var(--space-lg);
+  gap: var(--space-sm);
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.25);
+}
+
+.feature-card--highlight {
+  background: var(--grad-feature-highlight);
+  border-color: rgba(var(--accent-primary-rgb), 0.9);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.feature-card--highlight:hover {
+  border-color: rgba(var(--accent-primary-rgb), 1);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+.feature-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--grad-feature-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  transition: all var(--transition-base);
+}
+
+.feature-card:hover .feature-card__icon {
+  background: var(--grad-feature-icon-strong);
+  transform: scale(1.05);
+}
+
+.feature-card--highlight .feature-card__icon {
+  background: var(--grad-feature-icon-strong);
+}
+
+.feature-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  color: rgba(226, 232, 240, 0.9);
+  transition: all var(--transition-base);
+}
+
+.feature-card:hover .feature-icon {
+  color: rgba(226, 232, 240, 1);
+}
+
+.feature-card--highlight .feature-icon {
+  color: rgba(226, 232, 240, 1);
+}
+
+.feature-card__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.feature-card__text {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: rgba(148, 163, 184, 0.95);
+  margin: 0;
+}
+
+/* ===== Pricing Card ===== */
+.pricing-card {
+  padding: 22px 20px 24px;
+  text-align: left;
+  gap: 12px;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.pricing-card--featured {
+  border-color: rgba(var(--accent-primary-rgb), 0.9);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.pricing-card--featured:hover {
+  border-color: rgba(var(--accent-primary-rgb), 1);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--grad-accent-diagonal);
+  color: #0b1120;
+  font-weight: 600;
+}
+
+.pricing-card__label {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.9);
+  margin: 0;
+  font-weight: 500;
+}
+
+.pricing-card__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pricing-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.pricing-card__price {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: #f9fafb;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.pricing-card__unit {
+  font-size: var(--text-sm);
+  color: rgba(156, 163, 175, 0.95);
+}
+
+.pricing-card__hint {
+  font-size: var(--text-sm);
+  color: rgba(148, 163, 184, 0.95);
+  margin: 0;
+}
+
+.pricing-card__features {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 var(--space-sm);
+  flex-grow: 1;
+}
+
+.pricing-card__features li {
+  font-size: var(--text-sm);
+  color: rgba(209, 213, 219, 0.95);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.pricing-card__features li::before {
+  content: '✓';
+  color: rgba(var(--accent-primary-rgb), 0.9);
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.pricing-card--featured .pricing-card__features li::before {
+  color: rgba(var(--accent-primary-rgb), 1);
+}
+
+.pricing-card__cta {
+  margin-top: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.pricing-card__value-note {
+  margin-top: 8px;
+  font-size: var(--text-sm);
+  color: rgba(94, 234, 212, 0.95);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ===== Testimonial Card ===== */
+.testimonial-card {
+  padding: 20px 20px 18px;
+  gap: 14px;
+}
+
+.testimonial-card__accent {
+  width: 40px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: var(--grad-accent-diagonal);
+  margin-bottom: 4px;
+}
+
+.testimonial-card__body {
+  flex-grow: 1;
+}
+
+.testimonial-card__quote {
+  font-size: var(--text-md);
+  line-height: 1.6;
+  color: rgba(229, 231, 235, 0.96);
+  margin: 0;
+}
+
+.testimonial-card__metric {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--text-sm);
+  color: rgba(94, 234, 212, 0.95);
+}
+
+.testimonial-card__footer {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.testimonial-card__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--grad-feature-icon-avatar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.testimonial-avatar-initials {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+.testimonial-card__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.testimonial-card__role {
+  font-size: var(--text-sm);
+  color: rgba(148, 163, 184, 0.95);
+  margin: 0;
+}
+
+/* ===== Security Card ===== */
+.security-card {
+  padding: 18px 18px 20px;
+  gap: 8px;
+}
+
+.security-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--grad-feature-icon-weak);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all var(--transition-base);
+}
+
+.security-card:hover .security-card__icon {
+  background: var(--grad-feature-icon-medium);
+  transform: scale(1.05);
+}
+
+.security-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  color: rgba(226, 232, 240, 0.95);
+  transition: all var(--transition-base);
+}
+
+.security-card:hover .security-icon {
+  color: rgba(226, 232, 240, 1);
+}
+
+.security-card__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.security-card__text {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: rgba(148, 163, 184, 0.96);
+  margin: 0;
+}
+
+/* Responsive adjustments for components */
+@media (max-width: 768px) {
+  .feature-card {
+    padding: 16px 14px 18px;
+  }
+
+  .feature-card__icon {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 12px;
+  }
+
+  .feature-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .feature-card__title {
+    font-size: 0.95rem;
+  }
+
+  .feature-card__text {
+    font-size: 0.85rem;
+  }
+
+  .pricing-card {
+    padding: 18px 16px 20px;
+  }
+
+  .pricing-card--featured:hover {
+    transform: translateY(-2px);
+  }
+
+  .testimonial-card {
+    padding: 18px 16px 16px;
+  }
+
+  .security-card {
+    padding: 16px 16px 18px;
+  }
+}
+

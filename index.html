@@ -13,7 +13,11 @@
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/refactor/tokens.css">
+  <link rel="stylesheet" href="css/refactor/shell.css">
+  <link rel="stylesheet" href="css/refactor/components.css">
+  <link rel="stylesheet" href="css/refactor/sections.css">
+  <link rel="stylesheet" href="css/refactor/mockups.css">
   <link rel="stylesheet" href="css/overrides.css">
   
   <!-- JavaScript -->
@@ -178,60 +182,63 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="dispatch-mockup">
-                <div class="dispatch-mockup__monitor">
-                  <div class="dispatch-mockup__screen">
-                    <div class="dispatch-mockup__header">
+              <div class="mockup mockup--dispatch">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
                     </div>
-                    <div class="dispatch-mockup__content">
-                      <div class="dispatch-mockup__table">
-                        <div class="dispatch-mockup__row dispatch-mockup__row--header">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">Fahrer</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">Zeit</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">Status</div>
+                    <div class="mockup__content">
+                      <div class="mockup-table">
+                        <div class="mockup-table__row mockup-table__row--header">
+                          <div class="mockup-table__cell mockup-table__cell--driver">Fahrer</div>
+                          <div class="mockup-table__cell mockup-table__cell--time">Zeit</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">Status</div>
                         </div>
-                        <div class="dispatch-mockup__row">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">
+                        <div class="mockup-table__row">
+                          <div class="mockup-table__cell mockup-table__cell--driver">
                             <span class="dispatch-mockup__driver-name">Ibrahim</span>
                           </div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">08:00 - 12:30</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">
+                          <div class="mockup-table__cell mockup-table__cell--time">08:00 - 12:30</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">
                             <div class="dispatch-mockup__bar dispatch-mockup__bar--blue"></div>
                           </div>
                         </div>
-                        <div class="dispatch-mockup__row">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">
+                        <div class="mockup-table__row">
+                          <div class="mockup-table__cell mockup-table__cell--driver">
                             <span class="dispatch-mockup__driver-name">Ahmed</span>
                           </div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">09:15 - 14:45</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">
+                          <div class="mockup-table__cell mockup-table__cell--time">09:15 - 14:45</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">
                             <div class="dispatch-mockup__bar dispatch-mockup__bar--green"></div>
                           </div>
                         </div>
-                        <div class="dispatch-mockup__row">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">
+                        <div class="mockup-table__row">
+                          <div class="mockup-table__cell mockup-table__cell--driver">
                             <span class="dispatch-mockup__driver-name">Mohammed</span>
                           </div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">10:30 - 16:00</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">
+                          <div class="mockup-table__cell mockup-table__cell--time">10:30 - 16:00</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">
                             <div class="dispatch-mockup__bar dispatch-mockup__bar--orange"></div>
                           </div>
                         </div>
-                        <div class="dispatch-mockup__row">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">
+                        <div class="mockup-table__row">
+                          <div class="mockup-table__cell mockup-table__cell--driver">
                             <span class="dispatch-mockup__driver-name">Hassan</span>
                           </div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">11:00 - 17:30</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">
+                          <div class="mockup-table__cell mockup-table__cell--time">11:00 - 17:30</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">
                             <div class="dispatch-mockup__bar dispatch-mockup__bar--blue"></div>
                           </div>
                         </div>
-                        <div class="dispatch-mockup__row">
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--driver">
+                        <div class="mockup-table__row">
+                          <div class="mockup-table__cell mockup-table__cell--driver">
                             <span class="dispatch-mockup__driver-name">Ayman</span>
                           </div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--time">13:00 - 18:00</div>
-                          <div class="dispatch-mockup__cell dispatch-mockup__cell--status">
+                          <div class="mockup-table__cell mockup-table__cell--time">13:00 - 18:00</div>
+                          <div class="mockup-table__cell mockup-table__cell--status">
                             <div class="dispatch-mockup__bar dispatch-mockup__bar--green"></div>
                           </div>
                         </div>
@@ -258,155 +265,71 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="timesheet-mockup">
-                <div class="timesheet-mockup__monitor">
-                  <div class="timesheet-mockup__screen">
-                    <div class="timesheet-mockup__header">
+              <div class="mockup mockup--timesheet">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
                     </div>
-                    <div class="timesheet-mockup__content">
+                    <div class="mockup__content">
                       <div class="timesheet-card">
                         <div class="timesheet-card__date">
                           <span class="timesheet-card__day">Fahrer-Übersicht</span>
                         </div>
-                        <div class="timesheet-card__table">
-                          <div class="timesheet-table__row timesheet-table__row--header">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">Name</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">Umsatz</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">Stunden</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">Fahrten</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">Fahrten/Stunde</div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell mockup-table__cell--name">Name</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">Umsatz</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">Stunden</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">Fahrten</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">Fahrten/Stunde</div>
                           </div>
-                          <div class="timesheet-table__row">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="timesheet-table__driver-name">Ibrahim</span>
                             </div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">2.450 €</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">32</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">120</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">3,75</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.450 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">32</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">120</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,75</div>
                           </div>
-                          <div class="timesheet-table__row">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="timesheet-table__driver-name">Ahmed</span>
                             </div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">2.780 €</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">38</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">145</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">3,82</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.780 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">38</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">145</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,82</div>
                           </div>
-                          <div class="timesheet-table__row">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="timesheet-table__driver-name">Mohammed</span>
                             </div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">2.120 €</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">28</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">110</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">3,93</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.120 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">28</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">110</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">3,93</div>
                           </div>
-                          <div class="timesheet-table__row">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="timesheet-table__driver-name">Hassan</span>
                             </div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">2.650 €</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">35</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">140</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">4,00</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.650 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">35</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">140</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">4,00</div>
                           </div>
-                          <div class="timesheet-table__row">
-                            <div class="timesheet-table__cell timesheet-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="timesheet-table__driver-name">Ayman</span>
                             </div>
-                            <div class="timesheet-table__cell timesheet-table__cell--umsatz">2.310 €</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--stunden">30</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--fahrten">125</div>
-                            <div class="timesheet-table__cell timesheet-table__cell--rate">4,17</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Feature 3 -->
-        <article class="feature-row">
-          <div class="feature-row__content">
-            <h3 class="feature-row__title">Digitale Belege in Sekunden</h3>
-            <p class="feature-row__subtitle">
-              Fahrer machen ein Foto, Fahrly bereitet den Beleg automatisch für die Buchhaltung vor.
-            </p>
-            <p class="feature-row__outcome">
-              Ergebnis: Stunden weniger Belegsortieren und weniger Fehler in der Abrechnung.
-            </p>
-            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
-          </div>
-          <div class="feature-row__media">
-            <div class="feature-media-card">
-              <div class="receipt-mockup">
-                <div class="receipt-mockup__monitor">
-                  <div class="receipt-mockup__screen">
-                    <div class="receipt-mockup__header">
-                    </div>
-                    <div class="receipt-mockup__content">
-                      <div class="receipt-card">
-                        <div class="receipt-card__date">
-                          <span class="receipt-card__day">Belege-Übersicht</span>
-                        </div>
-                        <div class="receipt-card__table">
-                          <div class="receipt-table__row receipt-table__row--header">
-                            <div class="receipt-table__cell receipt-table__cell--datum">Datum</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">Wert</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Typ</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">Fahrer</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Fahrzeug</div>
-                          </div>
-                          <div class="receipt-table__row">
-                            <div class="receipt-table__cell receipt-table__cell--datum">17.November.2025</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">245 €</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Ausgaben</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">
-                              <span class="receipt-table__driver-name">Ibrahim</span>
-                            </div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Toyota Corolla</div>
-                          </div>
-                          <div class="receipt-table__row">
-                            <div class="receipt-table__cell receipt-table__cell--datum">17.November.2025</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">89 €</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Ausgaben</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">
-                              <span class="receipt-table__driver-name">Ahmed</span>
-                            </div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Toyota Corolla</div>
-                          </div>
-                          <div class="receipt-table__row">
-                            <div class="receipt-table__cell receipt-table__cell--datum">17.November.2025</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">420 €</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Ausgaben</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">
-                              <span class="receipt-table__driver-name">Mohammed</span>
-                            </div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Toyota Corolla</div>
-                          </div>
-                          <div class="receipt-table__row">
-                            <div class="receipt-table__cell receipt-table__cell--datum">17.November.2025</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">156 €</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Ausgaben</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">
-                              <span class="receipt-table__driver-name">Hassan</span>
-                            </div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Toyota Corolla</div>
-                          </div>
-                          <div class="receipt-table__row">
-                            <div class="receipt-table__cell receipt-table__cell--datum">17.November.2025</div>
-                            <div class="receipt-table__cell receipt-table__cell--wert">312 €</div>
-                            <div class="receipt-table__cell receipt-table__cell--typ">Ausgaben</div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrer">
-                              <span class="receipt-table__driver-name">Ayman</span>
-                            </div>
-                            <div class="receipt-table__cell receipt-table__cell--fahrzeug">Toyota Corolla</div>
+                            <div class="mockup-table__cell mockup-table__cell--umsatz">2.310 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--stunden">30</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrten">125</div>
+                            <div class="mockup-table__cell mockup-table__cell--rate">4,17</div>
                           </div>
                         </div>
                       </div>
@@ -432,12 +355,15 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="esign-mockup">
-                <div class="esign-mockup__monitor">
-                  <div class="esign-mockup__screen">
-                    <div class="esign-mockup__header">
+              <div class="mockup mockup--esign">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
                     </div>
-                    <div class="esign-mockup__content">
+                    <div class="mockup__content">
                       <div class="esign-card">
                         <div class="esign-doc">
                           <div class="esign-doc__header">
@@ -483,56 +409,59 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="salary-mockup">
-                <div class="salary-mockup__monitor">
-                  <div class="salary-mockup__screen">
-                    <div class="salary-mockup__header">
+              <div class="mockup mockup--salary">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
                     </div>
-                    <div class="salary-mockup__content">
+                    <div class="mockup__content">
                       <div class="salary-card">
                         <div class="salary-card__date">
                           <span class="salary-card__day">Gehaltsübersicht</span>
                         </div>
-                        <div class="salary-card__table">
-                          <div class="salary-table__row salary-table__row--header">
-                            <div class="salary-table__cell salary-table__cell--name">Name</div>
-                            <div class="salary-table__cell salary-table__cell--percent">%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">Gehalt</div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell mockup-table__cell--name">Name</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">Gehalt</div>
                           </div>
-                          <div class="salary-table__row">
-                            <div class="salary-table__cell salary-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="salary-table__driver-name">Ibrahim</span>
                             </div>
-                            <div class="salary-table__cell salary-table__cell--percent">45%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">3.240 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">45%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">3.240 €</div>
                           </div>
-                          <div class="salary-table__row">
-                            <div class="salary-table__cell salary-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="salary-table__driver-name">Ahmed</span>
                             </div>
-                            <div class="salary-table__cell salary-table__cell--percent">48%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">3.680 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">48%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">3.680 €</div>
                           </div>
-                          <div class="salary-table__row">
-                            <div class="salary-table__cell salary-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="salary-table__driver-name">Mohammed</span>
                             </div>
-                            <div class="salary-table__cell salary-table__cell--percent">42%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">2.850 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">42%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">2.850 €</div>
                           </div>
-                          <div class="salary-table__row">
-                            <div class="salary-table__cell salary-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="salary-table__driver-name">Hassan</span>
                             </div>
-                            <div class="salary-table__cell salary-table__cell--percent">50%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">3.950 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">50%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">3.950 €</div>
                           </div>
-                          <div class="salary-table__row">
-                            <div class="salary-table__cell salary-table__cell--name">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--name">
                               <span class="salary-table__driver-name">Ayman</span>
                             </div>
-                            <div class="salary-table__cell salary-table__cell--percent">44%</div>
-                            <div class="salary-table__cell salary-table__cell--gehalt">3.120 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--percent">44%</div>
+                            <div class="mockup-table__cell mockup-table__cell--gehalt">3.120 €</div>
                           </div>
                         </div>
                       </div>
@@ -558,62 +487,155 @@
           </div>
           <div class="feature-row__media">
             <div class="feature-media-card">
-              <div class="maintenance-mockup">
-                <div class="maintenance-mockup__monitor">
-                  <div class="maintenance-mockup__screen">
-                    <div class="maintenance-mockup__header">
+              <div class="mockup mockup--maintenance">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
                     </div>
-                    <div class="maintenance-mockup__content">
+                    <div class="mockup__content">
                       <div class="maintenance-card">
                         <div class="maintenance-card__date">
                           <span class="maintenance-card__day">Wartungsübersicht</span>
                         </div>
-                        <div class="maintenance-card__table">
-                          <div class="maintenance-table__row maintenance-table__row--header">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">Aufgabe</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">Fälligkeitsdatum</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">Kilometer</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">Status</div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Aufgabe</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">Fälligkeitsdatum</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">Kilometer</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">Status</div>
                           </div>
-                          <div class="maintenance-table__row">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">Ölwechsel</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">15. Dezember</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">4.200 km</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Ölwechsel</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">15. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.200 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
                               <span class="maintenance-status maintenance-status--offen">Offen</span>
                             </div>
                           </div>
-                          <div class="maintenance-table__row">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">TÜV</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">08. Dezember</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">3.500 km</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">TÜV</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">08. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.500 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
                               <span class="maintenance-status maintenance-status--erledigt">Erledigt</span>
                             </div>
                           </div>
-                          <div class="maintenance-table__row">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">Reifenwechsel</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">22. Dezember</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">4.800 km</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Reifenwechsel</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">22. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.800 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
                               <span class="maintenance-status maintenance-status--offen">Offen</span>
                             </div>
                           </div>
-                          <div class="maintenance-table__row">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">Bremse austauschen</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">03. Dezember</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">3.200 km</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Bremse austauschen</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">03. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">3.200 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
                               <span class="maintenance-status maintenance-status--erledigt">Erledigt</span>
                             </div>
                           </div>
-                          <div class="maintenance-table__row">
-                            <div class="maintenance-table__cell maintenance-table__cell--aufgabe">Batteriezustand</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--datum">18. Dezember</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--kilometer">4.500 km</div>
-                            <div class="maintenance-table__cell maintenance-table__cell--status">
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--aufgabe">Batteriezustand</div>
+                            <div class="mockup-table__cell mockup-table__cell--datum">18. Dezember</div>
+                            <div class="mockup-table__cell mockup-table__cell--kilometer">4.500 km</div>
+                            <div class="mockup-table__cell mockup-table__cell--status">
                               <span class="maintenance-status maintenance-status--offen">Offen</span>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 7 -->
+        <article class="feature-row">
+          <div class="feature-row__content">
+            <h3 class="feature-row__title">Digitale Belege in Sekunden</h3>
+            <p class="feature-row__subtitle">
+              Fahrer machen ein Foto, Fahrly bereitet den Beleg automatisch für die Buchhaltung vor.
+            </p>
+            <p class="feature-row__outcome">
+              Ergebnis: Stunden weniger Belegsortieren und weniger Fehler in der Abrechnung.
+            </p>
+            <a href="#pricing" class="feature-row__link">Mehr erfahren →</a>
+          </div>
+          <div class="feature-row__media">
+            <div class="feature-media-card">
+              <div class="mockup mockup--receipt">
+                <div class="mockup__monitor">
+                  <div class="mockup__screen">
+                    <div class="mockup__header">
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                      <span class="mockup__header-dot"></span>
+                    </div>
+                    <div class="mockup__content">
+                      <div class="receipt-card">
+                        <div class="receipt-card__date">
+                          <span class="receipt-card__day">Belege-Übersicht</span>
+                        </div>
+                        <div class="mockup-table">
+                          <div class="mockup-table__row mockup-table__row--header">
+                            <div class="mockup-table__cell mockup-table__cell--datum">Datum</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">Wert</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Typ</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">Fahrer</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Fahrzeug</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">245 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Ausgaben</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">
+                              <span class="receipt-table__driver-name">Ibrahim</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">89 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Ausgaben</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">
+                              <span class="receipt-table__driver-name">Ahmed</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">420 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Ausgaben</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">
+                              <span class="receipt-table__driver-name">Mohammed</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">156 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Ausgaben</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">
+                              <span class="receipt-table__driver-name">Hassan</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
+                          </div>
+                          <div class="mockup-table__row">
+                            <div class="mockup-table__cell mockup-table__cell--datum">17.November.2025</div>
+                            <div class="mockup-table__cell mockup-table__cell--wert">312 €</div>
+                            <div class="mockup-table__cell mockup-table__cell--typ">Ausgaben</div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrer">
+                              <span class="receipt-table__driver-name">Ayman</span>
+                            </div>
+                            <div class="mockup-table__cell mockup-table__cell--fahrzeug">Toyota Corolla</div>
                           </div>
                         </div>
                       </div>
